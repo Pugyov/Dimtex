@@ -1,0 +1,22 @@
+---
+interface Props {
+  lang: "en" | "bg";
+  brand: string;
+}
+
+const { lang, brand } = Astro.props;
+const threadLabel = lang === "bg" ? "Шев на логото" : "Wordmark seam";
+---
+
+<div class="wordmark-sew" aria-hidden="true" data-lang={lang} aria-label={threadLabel}>
+  <div class="wordmark-sew-copy wordmark-sew-base">{brand}</div>
+  <div class="wordmark-sew-copy wordmark-sew-reveal">{brand}</div>
+  <div class="wordmark-sew-line">
+    <span class="wordmark-sew-line-track"></span>
+    <span class="wordmark-sew-line-stitch"></span>
+    <span class="wordmark-sew-needle">
+      <span class="wordmark-sew-needle-arm"></span>
+      <span class="wordmark-sew-needle-core"></span>
+    </span>
+  </div>
+</div>

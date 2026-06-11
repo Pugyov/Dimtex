@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HomeSewingOverlay from "../../components/HomeSewingOverlay.astro";
+import { company } from "../../data/company";
+import { pageMeta } from "../../data/translations";
+
+const lang = "bg";
+const brand = company.nameBg;
+---
+
+<BaseLayout title={pageMeta.bg.home.title} description={pageMeta.bg.home.description} lang={lang} hideChrome noScroll>
+  <section class="hero-gridline relative min-h-svh overflow-hidden" data-hero-surface>
+    <div class="shell hero-stage flex min-h-svh items-center py-12 sm:py-14 lg:py-16">
+      <div class="w-full">
+        <div class="hero-copy hero-brand-layout space-y-8">
+          <div class="hero-wordmark-wrap hero-entry hero-entry-delay-1" data-lang={lang}>
+            <h1 class="hero-brand-wordmark">{brand}</h1>
+            <HomeSewingOverlay lang={lang} brand={brand} />
+          </div>
+          <div class="hero-brand-actions flex flex-wrap gap-x-8 gap-y-3 text-sm uppercase tracking-[0.18em] text-[rgba(17,17,17,0.56)]">
+            <a href="/bg/about" class="hero-action hero-entry hero-entry-delay-2 border-b border-transparent pb-1 hover:border-black/70 hover:text-[#111111]">За нас</a>
+            <a href="/bg/contact" class="hero-action hero-entry hero-entry-delay-2 border-b border-black/20 pb-1 text-[#111111] hover:border-black/70">Свържете се с нас</a>
+            <a href="/" class="hero-action hero-entry hero-entry-delay-3 text-[rgba(17,17,17,0.42)] hover:text-[#111111]">English</a>
+          </div>
+        </div>
+      </div>
+  </section>
+</BaseLayout>

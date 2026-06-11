@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const lang = "bg";
+---
+
+<BaseLayout title="Изпратено запитване | ДИМТЕКС ООД" description="Потвърждение за изпратена форма за контакт." lang={lang}>
+  <section class="section-space">
+    <div class="shell max-w-3xl space-y-6">
+      <p class="eyebrow hero-entry">Благодарим</p>
+      <h1 class="display-title hero-entry hero-entry-delay-1">Вашето запитване беше изпратено.</h1>
+      <div class="rule hero-entry hero-entry-delay-2 pt-6 text-sm text-[#111111]">
+        <a href="/bg/contact" class="hero-action underline-offset-4 hover:underline">Обратно към контакт</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

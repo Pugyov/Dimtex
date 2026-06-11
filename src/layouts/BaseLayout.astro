@@ -1,0 +1,46 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: "en" | "bg";
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  hideChrome?: boolean;
+  noScroll?: boolean;
+}
+
+const { title, description, lang, canonical, ogTitle, ogDescription, hideChrome = false, noScroll = false } = Astro.props;
+const siteUrl = "https://www.dimtex.bg";
+const canonicalUrl = canonical ? new URL(canonical, siteUrl).toString() : new URL(Astro.url.pathname, siteUrl).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle ?? title} />
+    <meta property="og:description" content={ogDescription ?? description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="DIMTEX LTD" />
+    <meta property="og:image" content={`${siteUrl}/images/placeholders/production-floor.svg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class:list={[noScroll ? "overflow-hidden" : ""]}>
+    {!hideChrome && <Header lang={lang} pathname={Astro.url.pathname} />}
+    <main>
+      <slot />
+    </main>
+    {!hideChrome && <Footer lang={lang} />}
+  </body>
+</html>

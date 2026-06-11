@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#f8fafc"/>
+  <circle cx="290" cy="280" r="120" fill="#12355b"/>
+  <circle cx="800" cy="280" r="120" fill="#9f1239"/>
+  <circle cx="1310" cy="280" r="120" fill="#12355b"/>
+  <rect x="180" y="420" width="220" height="320" rx="42" fill="#1f2937"/>
+  <rect x="690" y="420" width="220" height="320" rx="42" fill="#374151"/>
+  <rect x="1200" y="420" width="220" height="320" rx="42" fill="#1f2937"/>
+  <text x="120" y="880" fill="#6b7280" font-family="Arial, sans-serif" font-size="52">Finished garments placeholder</text>
+</svg>

@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { aboutContent } from "../../data/company";
+import { pageMeta } from "../../data/translations";
+
+const lang = "bg";
+const content = aboutContent.bg;
+const experienceParagraphs = aboutContent.showNamedClients ? content.namedExperienceParagraphs : content.safeExperienceParagraphs;
+---
+
+<BaseLayout title={pageMeta.bg.about.title} description={pageMeta.bg.about.description} lang={lang}>
+  <section class="section-space">
+    <div class="shell space-y-16">
+      <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <div class="space-y-6">
+          <p class="eyebrow hero-entry">{content.heroLabel}</p>
+          <h1 class="display-title hero-entry hero-entry-delay-1 max-w-4xl">{content.heroTitle}</h1>
+        </div>
+        <p class="body-copy hero-entry hero-entry-delay-2 max-w-xl">{content.heroIntro}</p>
+      </div>
+
+      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="space-y-4">
+          <p class="eyebrow">{content.overviewTitle}</p>
+        </div>
+        <div class="space-y-5">
+          {content.overviewParagraphs.map((paragraph) => (
+            <p class="body-copy max-w-3xl">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="space-y-4">
+          <p class="eyebrow">{content.productionTitle}</p>
+        </div>
+        <div class="space-y-5">
+          {content.productionParagraphs.map((paragraph) => (
+            <p class="body-copy max-w-3xl">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="space-y-4">
+          <p class="eyebrow">{content.experienceTitle}</p>
+        </div>
+        <div class="space-y-5">
+          {/* TODO: Confirm whether these client names are approved for public display before launch. */}
+          {experienceParagraphs.map((paragraph) => (
+            <p class="body-copy max-w-3xl">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="space-y-4">
+          <p class="eyebrow">{content.factsLabel}</p>
+          <p class="body-muted max-w-sm">{content.factsIntro}</p>
+        </div>
+
+        <dl class="grid gap-8">
+          {content.facts.map((fact) => (
+            <div class="grid gap-2 border-b border-black/10 pb-6 sm:grid-cols-[8rem_1fr]">
+              <dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">{fact.label}</dt>
+              <dd class="text-lg text-[#111111]">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="rule hero-entry hero-entry-delay-3 grid gap-6 pt-10 lg:grid-cols-[1fr_auto] lg:items-end">
+        <p class="editorial-title max-w-3xl">{content.closingTitle}</p>
+        <a href="/bg/contact" class="hero-action border-b border-black/20 pb-1 text-sm uppercase tracking-[0.18em] text-[#111111] hover:border-black/70">
+          {content.closingAction}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

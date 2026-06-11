@@ -1,0 +1,57 @@
+---
+import { navigationItems } from "../data/navigation";
+import { siteCopy } from "../data/translations";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import MobileMenu from "./react/MobileMenu";
+
+interface Props {
+  lang: "en" | "bg";
+  pathname: string;
+}
+
+const { lang, pathname } = Astro.props;
+const copy = siteCopy[lang];
+
+const navItems = navigationItems.map((item) => ({
+  key: item.key,
+  label: copy.nav[item.key],
+  href: lang === "en" ? item.path : item.bgPath,
+  active:
+    pathname === (lang === "en" ? item.path : item.bgPath) ||
+    (item.key === "home" && pathname === (lang === "en" ? "/" : "/bg"))
+}));
+---
+
+<header class="sticky top-0 z-40 border-b border-black/6 bg-[rgba(251,251,248,0.9)] backdrop-blur-xl">
+  <div class="shell flex min-h-[5.25rem] items-center justify-between gap-6 py-4">
+    <a href={lang === "en" ? "/" : "/bg"} class="min-w-0">
+      <span class="block font-display text-[1.75rem] font-semibold tracking-[0.02em] text-[#111111] sm:text-[1.95rem]">{copy.brand}</span>
+    </a>
+
+    <nav class="hidden items-center gap-6 lg:flex" aria-label={lang === "en" ? "Primary navigation" : "Основна навигация"}>
+      {navItems.filter((item) => item.key !== "contact").map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "text-sm text-[rgba(17,17,17,0.56)] hover:text-[#111111] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
+            item.active ? "text-[#111111]" : ""
+          ]}
+          aria-current={item.active ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={lang === "en" ? "/contact" : "/bg/contact"}
+        class="border-b border-[rgba(17,17,17,0.25)] pb-1 text-sm text-[#111111] transition hover:border-[rgba(17,17,17,0.7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+      >
+        {copy.actions.contact}
+      </a>
+      <LanguageSwitcher lang={lang} pathname={pathname} />
+    </nav>
+
+    <div class="lg:hidden">
+      <MobileMenu client:load lang={lang} pathname={pathname} />
+    </div>
+  </div>
+</header>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#eef2f7"/>
+  <rect x="140" y="160" width="1320" height="680" rx="30" fill="#ffffff"/>
+  <rect x="240" y="280" width="560" height="420" rx="24" fill="#12355b"/>
+  <rect x="900" y="280" width="460" height="90" rx="14" fill="#d1d5db"/>
+  <rect x="900" y="410" width="460" height="90" rx="14" fill="#d1d5db"/>
+  <rect x="900" y="540" width="460" height="90" rx="14" fill="#d1d5db"/>
+  <circle cx="520" cy="490" r="130" fill="#9f1239"/>
+  <text x="950" y="250" fill="#12355b" font-family="Arial, sans-serif" font-size="64" font-weight="700">Quality Control</text>
+</svg>
