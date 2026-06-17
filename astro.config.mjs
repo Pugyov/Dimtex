@@ -6,5 +6,11 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://dimtex.bg",
   output: "static",
-  integrations: [tailwind(), react(), sitemap()]
+  integrations: [
+    tailwind(),
+    react(),
+    sitemap({
+      filter: (page) => !page.includes("/contact-success/")
+    })
+  ]
 });

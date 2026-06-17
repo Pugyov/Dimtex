@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import { company } from "../data/company";
 import "../styles/global.css";
 
 interface Props {
@@ -12,11 +13,69 @@ interface Props {
   ogDescription?: string;
   hideChrome?: boolean;
   noScroll?: boolean;
+  noIndex?: boolean;
 }
 
-const { title, description, lang, canonical, ogTitle, ogDescription, hideChrome = false, noScroll = false } = Astro.props;
+const {
+  title,
+  description,
+  lang,
+  canonical,
+  ogTitle,
+  ogDescription,
+  hideChrome = false,
+  noScroll = false,
+  noIndex = false
+} = Astro.props;
 const siteUrl = "https://dimtex.bg";
 const canonicalUrl = canonical ? new URL(canonical, siteUrl).toString() : new URL(Astro.url.pathname, siteUrl).toString();
+
+const normalizePath = (path: string) => {
+  if (path === "/" || path === "") {
+    return "/";
+  }
+
+  return `/${path.replace(/^\/|\/$/g, "")}/`;
+};
+
+const currentPath = normalizePath(new URL(canonicalUrl).pathname);
+const alternateRoutes: Record<string, { en: string; bg: string; default: string }> = {
+  "/": { en: "/", bg: "/bg/", default: "/" },
+  "/bg/": { en: "/", bg: "/bg/", default: "/" },
+  "/about/": { en: "/about/", bg: "/bg/about/", default: "/about/" },
+  "/bg/about/": { en: "/about/", bg: "/bg/about/", default: "/about/" },
+  "/contact/": { en: "/contact/", bg: "/bg/contact/", default: "/contact/" },
+  "/bg/contact/": { en: "/contact/", bg: "/bg/contact/", default: "/contact/" }
+};
+const alternates = noIndex ? undefined : alternateRoutes[currentPath];
+const organizationStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  name: company.nameEn,
+  alternateName: company.nameBg,
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  foundingDate: company.founded,
+  email: company.emailPlaceholder,
+  telephone: company.phonePlaceholder,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Aleksandar Stamboliyski 77",
+    addressLocality: company.city,
+    addressCountry: company.country
+  },
+  areaServed: company.country,
+  industry: company.industryEn,
+  description: `${company.nameEn} is a clothing manufacturer in ${company.city}, ${company.country}, focused on ${company.productionFocusEn.toLowerCase()}, sewing services, and subcontract production.`,
+  makesOffer: company.servicesEn.map((service) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: service
+    }
+  }))
+};
 ---
 
 <!doctype html>
@@ -26,7 +85,15 @@ const canonicalUrl = canonical ? new URL(canonical, siteUrl).toString() : new UR
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalUrl} />
+    {alternates && (
+      <>
+        <link rel="alternate" hreflang="en" href={new URL(alternates.en, siteUrl).toString()} />
+        <link rel="alternate" hreflang="bg" href={new URL(alternates.bg, siteUrl).toString()} />
+        <link rel="alternate" hreflang="x-default" href={new URL(alternates.default, siteUrl).toString()} />
+      </>
+    )}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={ogTitle ?? title} />
     <meta property="og:description" content={ogDescription ?? description} />
@@ -34,6 +101,7 @@ const canonicalUrl = canonical ? new URL(canonical, siteUrl).toString() : new UR
     <meta property="og:site_name" content="DIMTEX LTD" />
     <meta property="og:image" content={`${siteUrl}/images/placeholders/production-floor.svg`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationStructuredData)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body class:list={[noScroll ? "overflow-hidden" : ""]}>
