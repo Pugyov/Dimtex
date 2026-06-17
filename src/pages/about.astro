@@ -1,80 +1,67 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { aboutContent } from "../data/company";
+import FactoryImage from "../components/FactoryImage.astro";
+import { aboutContent, factoryImages } from "../data/company";
 import { pageMeta } from "../data/translations";
 
 const lang = "en";
 const content = aboutContent.en;
-const experienceParagraphs = aboutContent.showNamedClients ? content.namedExperienceParagraphs : content.safeExperienceParagraphs;
+const teamImage = {
+  src: factoryImages.teamOrFamily.src,
+  fallbackSrc: factoryImages.teamOrFamily.fallbackSrc,
+  alt: factoryImages.teamOrFamily.alt.en
+};
 ---
 
 <BaseLayout title={pageMeta.en.about.title} description={pageMeta.en.about.description} lang={lang}>
-  <section class="section-space">
-    <div class="shell space-y-16">
-      <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-        <div class="space-y-6">
-          <p class="eyebrow hero-entry">{content.heroLabel}</p>
-          <h1 class="display-title hero-entry hero-entry-delay-1 max-w-4xl">{content.heroTitle}</h1>
-        </div>
-        <p class="body-copy hero-entry hero-entry-delay-2 max-w-xl">{content.heroIntro}</p>
+  <section class="profile-hero">
+    <div class="shell profile-hero-grid">
+      <div class="space-y-6">
+        <p class="eyebrow hero-entry">{content.heroLabel}</p>
+        <h1 class="profile-title hero-entry hero-entry-delay-1">{content.heroTitle}</h1>
       </div>
+      <p class="profile-lede hero-entry hero-entry-delay-2">{content.heroIntro}</p>
+    </div>
+  </section>
 
-      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
+  <section class="profile-section">
+    <div class="shell profile-intro">
+      <div class="hero-entry hero-entry-delay-3">
+        <FactoryImage image={teamImage} sizes="(min-width: 1024px) 42vw, 100vw" class="profile-photo" />
+      </div>
+      <div class="profile-copy hero-entry hero-entry-delay-3">
+        <p class="eyebrow">{content.snapshots[0].label}</p>
+        <h2 class="profile-section-title">{content.profileTitle}</h2>
         <div class="space-y-4">
-          <p class="eyebrow">{content.overviewTitle}</p>
-        </div>
-        <div class="space-y-5">
-          {content.overviewParagraphs.map((paragraph) => (
-            <p class="body-copy max-w-3xl">{paragraph}</p>
+          {content.profileParagraphs.map((paragraph) => (
+            <p class="body-copy">{paragraph}</p>
           ))}
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="space-y-4">
-          <p class="eyebrow">{content.productionTitle}</p>
-        </div>
-        <div class="space-y-5">
-          {content.productionParagraphs.map((paragraph) => (
-            <p class="body-copy max-w-3xl">{paragraph}</p>
-          ))}
-        </div>
+  <section class="profile-section profile-section-ruled">
+    <div class="shell">
+      <div class="profile-section-heading">
+        <p class="eyebrow">{content.capabilitiesLabel}</p>
+        <h2 class="profile-section-title">{content.snapshots[1].title}</h2>
       </div>
-
-      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="space-y-4">
-          <p class="eyebrow">{content.experienceTitle}</p>
-        </div>
-        <div class="space-y-5">
-          {/* TODO: Confirm whether these client names are approved for public display before launch. */}
-          {experienceParagraphs.map((paragraph) => (
-            <p class="body-copy max-w-3xl">{paragraph}</p>
-          ))}
-        </div>
+      <div class="profile-capabilities">
+        {content.capabilities.map((item) => (
+          <article class="profile-capability">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <div class="rule hero-entry hero-entry-delay-3 grid gap-10 pt-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="space-y-4">
-          <p class="eyebrow">{content.factsLabel}</p>
-          <p class="body-muted max-w-sm">{content.factsIntro}</p>
-        </div>
-
-        <dl class="grid gap-8">
-          {content.facts.map((fact) => (
-            <div class="grid gap-2 border-b border-black/10 pb-6 sm:grid-cols-[8rem_1fr]">
-              <dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">{fact.label}</dt>
-              <dd class="text-lg text-[#111111]">{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-
-      <div class="rule hero-entry hero-entry-delay-3 grid gap-6 pt-10 lg:grid-cols-[1fr_auto] lg:items-end">
-        <p class="editorial-title max-w-3xl">{content.closingTitle}</p>
-        <a href="/contact" class="hero-action border-b border-black/20 pb-1 text-sm uppercase tracking-[0.18em] text-[#111111] hover:border-black/70">
-          {content.closingAction}
-        </a>
-      </div>
+  <section class="closing-section">
+    <div class="shell closing-cta">
+      <h2 class="closing-title">{content.closingTitle}</h2>
+      <a href="/contact" class="button-primary">{content.closingAction}</a>
     </div>
   </section>
 </BaseLayout>

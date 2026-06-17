@@ -3,8 +3,6 @@ export const company = {
   nameBg: "ДИМТЕКС ООД",
   legalFormEn: "Bulgarian limited liability company (OOD)",
   legalFormBg: "Българско дружество с ограничена отговорност (ООД)",
-  eik: "101066449",
-  vat: "BG101066449",
   city: "Blagoevgrad",
   country: "Bulgaria",
   addressEn: "Aleksandar Stamboliyski 77, Blagoevgrad, Bulgaria",
@@ -24,96 +22,180 @@ export const company = {
   intermediary: "JMJ"
 } as const;
 
-export const aboutContent = {
-  showNamedClients: false,
+export const factoryImages = {
+  workshop: {
+    src: "/images/factory/Garment Factory Construction Guidelines.jpeg",
+    fallbackSrc: "/images/placeholders/production-floor.svg",
+    alt: {
+      en: "DIMTEX garment production workshop in Blagoevgrad",
+      bg: "Производствено помещение на ДИМТЕКС в Благоевград"
+    }
+  },
+  sewingDetail: {
+    src: "/images/gallery/Garment Factory Image.jpg",
+    fallbackSrc: "/images/placeholders/machines.svg",
+    alt: {
+      en: "Sewing detail from trouser production",
+      bg: "Детайл от шиене при производство на панталони"
+    }
+  },
+  teamOrFamily: {
+    src: "/images/gallery/teamphoto.jpg",
+    fallbackSrc: "/images/placeholders/team.svg",
+    alt: {
+      en: "DIMTEX family-owned production team",
+      bg: "Семеен производствен екип на ДИМТЕКС"
+    }
+  }
+} as const;
+
+export const homeContent = {
   en: {
-    heroLabel: "ABOUT",
-    heroTitle: "A clothing manufacturer rooted in Blagoevgrad since 1997.",
-    heroIntro:
-      "DIMTEX LTD is a garment manufacturing partner based in Blagoevgrad, Bulgaria, specializing in the production of men's and women's trousers. Since 1997, we have supported fashion and apparel clients with reliable sewing, subcontract manufacturing, and consistent production execution.",
-    overviewTitle: "OUR COMPANY",
-    overviewParagraphs: [
-      "Founded in 1997, DIMTEX LTD has built its work around dependable garment production, clear communication, and long-term manufacturing relationships.",
-      "From our base in Blagoevgrad, Bulgaria, we provide sewing and subcontract production services for clients who need focused, consistent, and well-organized manufacturing support."
+    heroLabel: "Blagoevgrad, Bulgaria",
+    heroTitle: "Family-owned trouser production since 1997.",
+    heroIntro: "DIMTEX makes men's and women's trousers for clients who need close communication, careful sewing, and dependable subcontract production.",
+    primaryAction: "Send inquiry",
+    secondaryAction: "View company",
+    processLabel: "Production flow",
+    processTitle: "Clear steps, close control.",
+    processIntro: "A compact workshop rhythm keeps the work visible from first sample to finished delivery.",
+    processSteps: [
+      { label: "Cutting", text: "Materials are prepared around client specifications and production needs." },
+      { label: "Sewing", text: "Operators focus on consistent construction, fit, and finishing." },
+      { label: "Checking", text: "Details are reviewed through the run, not only at the end." },
+      { label: "Delivery", text: "Production stays organized around timing, packaging, and handover." }
     ],
-    productionTitle: "WHAT WE PRODUCE",
-    productionParagraphs: [
-      "Our main production focus is trousers for men and women. We work according to client specifications, technical requirements, and production standards, with attention to fit, finishing, consistency, and delivery discipline.",
-      "We are not a fashion label. We are a manufacturing partner — focused on transforming client requirements into reliable, repeatable garment production."
+    finalTitle: "Looking for trouser production capacity in Bulgaria?",
+    finalBody: "Share the garment type, expected quantities, timing, and technical requirements.",
+    finalAction: "Contact DIMTEX"
+  },
+  bg: {
+    heroLabel: "Благоевград, България",
+    heroTitle: "Семейно производство на панталони от 1997 г.",
+    heroIntro: "ДИМТЕКС произвежда мъжки и дамски панталони за клиенти, които търсят директна комуникация, прецизно шиене и надеждно подизпълнение.",
+    primaryAction: "Изпратете запитване",
+    secondaryAction: "Вижте компанията",
+    processLabel: "Производствен процес",
+    processTitle: "Ясни стъпки, близък контрол.",
+    processIntro: "Компактният работен ритъм поддържа видимост от първата мостра до готовата доставка.",
+    processSteps: [
+      { label: "Кроене", text: "Материалите се подготвят според спецификациите и нуждите на поръчката." },
+      { label: "Шиене", text: "Екипът следи за постоянна конструкция, силует и завършек." },
+      { label: "Проверка", text: "Детайлите се преглеждат по време на производството, не само накрая." },
+      { label: "Доставка", text: "Работата се организира около срокове, опаковане и предаване." }
     ],
-    experienceTitle: "PRODUCTION EXPERIENCE",
-    namedExperienceParagraphs: [
-      "We have production experience connected to international fashion clients through intermediary partnerships. Through these production relationships, we have experience connected to brands such as Joseph, Anne Fontaine, Maria De La Orden, and smaller-volume work related to Kenzo.",
-      "Our work is best understood as manufacturing support and subcontract production within broader commercial relationships rather than direct brand-side representation."
+    finalTitle: "Търсите производствен капацитет за панталони в България?",
+    finalBody: "Изпратете тип изделие, очаквани количества, срокове и технически изисквания.",
+    finalAction: "Свържете се с ДИМТЕКС"
+  }
+} as const;
+
+export const aboutContent = {
+  en: {
+    heroLabel: "About DIMTEX LTD",
+    heroTitle: "Garment production in Blagoevgrad since 1997.",
+    heroIntro: "DIMTEX is a family-owned clothing manufacturer focused on men's and women's trousers, sewing services, and subcontract production.",
+    profileTitle: "A practical production partner.",
+    profileParagraphs: [
+      "From our base in Blagoevgrad, Bulgaria, we support apparel clients with focused garment manufacturing and direct communication.",
+      "Our work is organized around repeatable trouser production, consistent sewing, and clear handover from technical requirements to finished garments."
     ],
-    safeExperienceParagraphs: [
-      "Through established intermediary partnerships, DIMTEX LTD has contributed to production connected with international fashion clients. This experience has shaped the way we work: precise execution, respect for client requirements, and a practical understanding of apparel production standards.",
-      "Our role is to provide dependable manufacturing support within broader commercial and production relationships."
+    capabilitiesLabel: "What we do",
+    capabilities: [
+      {
+        title: "Trouser production",
+        text: "Men's and women's trousers produced to client specifications."
+      },
+      {
+        title: "Sewing services",
+        text: "Focused sewing support for apparel production runs."
+      },
+      {
+        title: "Subcontract manufacturing",
+        text: "Production capacity for partners who need organized execution."
+      }
     ],
-    factsLabel: "Facts",
-    factsIntro: "Conservative company information for orientation and direct contact.",
-    facts: [
-      { label: "Founded", value: company.founded },
-      { label: "Location", value: `${company.city}, ${company.country}` },
-      { label: "Focus", value: company.productionFocusEn },
-      { label: "Services", value: company.servicesEn.join(", ") },
-      { label: "Legal", value: company.nameEn },
-      { label: "EIK", value: company.eik },
-      { label: "VAT", value: company.vat }
+    snapshots: [
+      {
+        label: "Family-owned",
+        title: "Decisions stay close to the floor.",
+        text: "The company is run with direct responsibility, short communication lines, and long-term working relationships."
+      },
+      {
+        label: "Production focus",
+        title: "Trousers for men and women.",
+        text: "The workshop is organized around repeatable garment production, fit, finishing, and consistency."
+      },
+      {
+        label: "Experience",
+        title: "Built through international work.",
+        text: "Intermediary partnerships have shaped a practical understanding of apparel standards and client requirements."
+      }
     ],
-    closingTitle: "Looking for reliable trouser production capacity in Bulgaria?",
+    closingTitle: "Send us your production details.",
     closingAction: "Contact us"
   },
   bg: {
-    heroLabel: "ЗА НАС",
-    heroTitle: "Производител на облекло с корени в Благоевград от 1997 г.",
-    heroIntro:
-      "ДИМТЕКС ООД е производствен партньор в сферата на облеклото, базиран в Благоевград, България, със специализация в производството на мъжки и дамски панталони. От 1997 г. подпомагаме модни и облеклови клиенти с надеждно шиене, подизпълнително производство и последователно изпълнение на производството.",
-    overviewTitle: "НАШАТА КОМПАНИЯ",
-    overviewParagraphs: [
-      "Основана през 1997 г., ДИМТЕКС ООД изгражда работата си върху надеждно производство на облекло, ясна комуникация и дългосрочни производствени отношения.",
-      "От нашата база в Благоевград, България, предоставяме шивашки услуги и подизпълнително производство за клиенти, които търсят фокусирана, последователна и добре организирана производствена подкрепа."
+    heroLabel: "За ДИМТЕКС ООД",
+    heroTitle: "Производство на облекло в Благоевград от 1997 г.",
+    heroIntro: "ДИМТЕКС е семейна компания за производство на облекло с фокус върху мъжки и дамски панталони, шивашки услуги и подизпълнение.",
+    profileTitle: "Практичен производствен партньор.",
+    profileParagraphs: [
+      "От нашата база в Благоевград подпомагаме клиенти в сферата на облеклото с фокусирано производство и директна комуникация.",
+      "Работата ни е организирана около повторяемо производство на панталони, постоянно качество на шиене и ясно изпълнение на техническите изисквания."
     ],
-    productionTitle: "КАКВО ПРОИЗВЕЖДАМЕ",
-    productionParagraphs: [
-      "Основният ни производствен фокус са мъжките и дамските панталони. Работим по клиентски спецификации, технически изисквания и производствени стандарти, с внимание към силуета, завършека, последователността и дисциплината при изпълнение.",
-      "Ние не сме моден бранд. Ние сме производствен партньор — фокусиран върху превръщането на клиентските изисквания в надеждно и повторяемо производство на изделия."
+    capabilitiesLabel: "Какво правим",
+    capabilities: [
+      {
+        title: "Производство на панталони",
+        text: "Мъжки и дамски панталони по клиентски спецификации."
+      },
+      {
+        title: "Шивашки услуги",
+        text: "Фокусирана шивашка подкрепа за производствени серии."
+      },
+      {
+        title: "Подизпълнително производство",
+        text: "Производствен капацитет за партньори, които търсят организирано изпълнение."
+      }
     ],
-    experienceTitle: "ПРОИЗВОДСТВЕН ОПИТ",
-    namedExperienceParagraphs: [
-      "Имаме производствен опит, свързан с международни модни клиенти чрез посреднически партньорства. Чрез тези производствени отношения имаме опит, свързан с марки като Joseph, Anne Fontaine, Maria De La Orden, както и с по-малки обеми работа, свързани с Kenzo.",
-      "Тази дейност следва да се разбира като производствена поддръжка и подизпълнителско производство в рамките на по-широки търговски отношения, а не като директно представителство на марки."
+    snapshots: [
+      {
+        label: "Семейна компания",
+        title: "Решения близо до производството.",
+        text: "Компанията работи с пряка отговорност, кратка комуникация и дългосрочни производствени отношения."
+      },
+      {
+        label: "Производствен фокус",
+        title: "Панталони за мъже и жени.",
+        text: "Базата е организирана около повторяемо производство, силует, завършек и постоянство."
+      },
+      {
+        label: "Опит",
+        title: "Изграден чрез международна работа.",
+        text: "Партньорства чрез посредници оформят практическо разбиране за стандарти и клиентски изисквания."
+      }
     ],
-    safeExperienceParagraphs: [
-      "Чрез установени посреднически партньорства ДИМТЕКС ООД е участвала в производство, свързано с международни модни клиенти. Този опит оформя начина, по който работим: прецизно изпълнение, уважение към клиентските изисквания и практическо разбиране на стандартите в производството на облекло.",
-      "Нашата роля е да осигуряваме надеждна производствена подкрепа в рамките на по-широки търговски и производствени отношения."
-    ],
-    factsLabel: "Факти",
-    factsIntro: "Консервативна фирмена информация за ориентация и директен контакт.",
-    facts: [
-      { label: "Основана", value: company.founded },
-      { label: "Локация", value: "Благоевград, България" },
-      { label: "Фокус", value: company.productionFocusBg },
-      { label: "Услуги", value: company.servicesBg.join(", ") },
-      { label: "Юридическо име", value: company.nameBg },
-      { label: "ЕИК", value: company.eik },
-      { label: "ДДС", value: company.vat }
-    ],
-    closingTitle: "Търсите надежден производствен капацитет за панталони в България?",
+    closingTitle: "Изпратете производствено запитване.",
     closingAction: "Свържете се с нас"
   }
 } as const;
 
-export const companyFacts = [
-  { labelEn: "Founded", labelBg: "Основана", value: company.founded },
-  {
-    labelEn: "Location",
-    labelBg: "Локация",
-    value: `${company.city}, ${company.country}`
+export const contactContent = {
+  en: {
+    heroLabel: "Contact",
+    heroTitle: "Send a production inquiry.",
+    heroIntro: "For trouser production, sewing services, subcontract work, or general manufacturing contact.",
+    formTitle: "Tell us what you need produced.",
+    formIntro: "Share the garment type, quantities, timing, and any technical requirements. We will respond directly with the next practical step.",
+    imageCaption: "Workshop contact for production planning, timing, and technical requirements."
   },
-  {
-    labelEn: "Focus",
-    labelBg: "Фокус",
-    value: "Garment manufacturing and sewing services"
+  bg: {
+    heroLabel: "Контакт",
+    heroTitle: "Изпратете производствено запитване.",
+    heroIntro: "За производство на панталони, шивашки услуги, подизпълнение или общ производствен контакт.",
+    formTitle: "Опишете какво трябва да произведем.",
+    formIntro: "Споделете вид изделие, количества, срокове и технически изисквания. Ще отговорим директно с практична следваща стъпка.",
+    imageCaption: "Контакт за планиране на производство, срокове и технически изисквания."
   }
-] as const;
+} as const;

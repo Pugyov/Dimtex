@@ -16,33 +16,33 @@ const copy = siteCopy[lang];
   data-netlify="true"
   netlify-honeypot="bot-field"
   action={successPath}
-  class="space-y-8 border-t border-black/10 pt-8"
+  class="contact-form space-y-8"
 >
   <input type="hidden" name="form-name" value="contact" />
   <input type="hidden" name="bot-field" />
 
   <div class="grid gap-6 sm:grid-cols-2">
-    <label class="space-y-2 text-sm text-[#111111]">
+    <label class="space-y-2 text-sm text-[#17120f]">
       <span>{lang === "en" ? "Name" : "Име"}</span>
-      <input class="w-full border-b border-black/15 bg-transparent px-0 py-3 text-base text-[#111111] outline-none transition placeholder:text-[rgba(17,17,17,0.3)] focus:border-[#111111]" type="text" name="name" required />
+      <input class="w-full border-b border-black/20 bg-transparent px-0 py-3 text-base text-[#17120f] outline-none transition placeholder:text-[rgba(23,18,15,0.32)] focus:border-[#7f1d1d]" type="text" name="name" required />
     </label>
-    <label class="space-y-2 text-sm text-[#111111]">
+    <label class="space-y-2 text-sm text-[#17120f]">
       <span>{lang === "en" ? "Company" : "Компания"}</span>
-      <input class="w-full border-b border-black/15 bg-transparent px-0 py-3 text-base text-[#111111] outline-none transition placeholder:text-[rgba(17,17,17,0.3)] focus:border-[#111111]" type="text" name="company" />
+      <input class="w-full border-b border-black/20 bg-transparent px-0 py-3 text-base text-[#17120f] outline-none transition placeholder:text-[rgba(23,18,15,0.32)] focus:border-[#7f1d1d]" type="text" name="company" />
     </label>
-    <label class="space-y-2 text-sm text-[#111111]">
+    <label class="space-y-2 text-sm text-[#17120f]">
       <span>Email</span>
-      <input class="w-full border-b border-black/15 bg-transparent px-0 py-3 text-base text-[#111111] outline-none transition placeholder:text-[rgba(17,17,17,0.3)] focus:border-[#111111]" type="email" name="email" required />
+      <input class="w-full border-b border-black/20 bg-transparent px-0 py-3 text-base text-[#17120f] outline-none transition placeholder:text-[rgba(23,18,15,0.32)] focus:border-[#7f1d1d]" type="email" name="email" required />
     </label>
-    <label class="space-y-2 text-sm text-[#111111]">
+    <label class="space-y-2 text-sm text-[#17120f]">
       <span>{lang === "en" ? "Phone" : "Телефон"}</span>
-      <input class="w-full border-b border-black/15 bg-transparent px-0 py-3 text-base text-[#111111] outline-none transition placeholder:text-[rgba(17,17,17,0.3)] focus:border-[#111111]" type="tel" name="phone" />
+      <input class="w-full border-b border-black/20 bg-transparent px-0 py-3 text-base text-[#17120f] outline-none transition placeholder:text-[rgba(23,18,15,0.32)] focus:border-[#7f1d1d]" type="tel" name="phone" />
     </label>
   </div>
 
-  <label class="space-y-2 text-sm text-[#111111]">
+  <label class="space-y-2 text-sm text-[#17120f]">
     <span>{lang === "en" ? "Inquiry type" : "Тип запитване"}</span>
-    <select class="w-full border-b border-black/15 bg-transparent px-0 py-3 text-base text-[#111111] outline-none transition focus:border-[#111111]" name="inquiryType" required>
+    <select class="w-full border-b border-black/20 bg-transparent px-0 py-3 text-base text-[#17120f] outline-none transition focus:border-[#7f1d1d]" name="inquiryType" required>
       <option value="">{lang === "en" ? "Select an option" : "Изберете опция"}</option>
       {copy.forms.inquiryTypes.map((item) => (
         <option value={item}>{item}</option>
@@ -50,15 +50,15 @@ const copy = siteCopy[lang];
     </select>
   </label>
 
-  <label class="space-y-2 text-sm text-[#111111]">
+  <label class="space-y-2 text-sm text-[#17120f]">
     <span>{lang === "en" ? "Message" : "Съобщение"}</span>
-    <textarea class="min-h-36 w-full border-b border-black/15 bg-transparent px-0 py-3 text-base text-[#111111] outline-none transition placeholder:text-[rgba(17,17,17,0.3)] focus:border-[#111111]" name="message" required></textarea>
+    <textarea class="min-h-36 w-full border-b border-black/20 bg-transparent px-0 py-3 text-base text-[#17120f] outline-none transition placeholder:text-[rgba(23,18,15,0.32)] focus:border-[#7f1d1d]" name="message" required></textarea>
   </label>
 
   <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
     <button
       type="submit"
-      class="text-sm text-[#111111] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+      class="button-primary"
     >
       {copy.actions.sendInquiry}
     </button>

@@ -12,25 +12,25 @@ const copy = siteCopy[lang];
 const companyName = lang === "en" ? company.nameEn : company.nameBg;
 ---
 
-<footer class="border-t border-black/8 bg-white/70">
-  <div class="shell grid gap-12 py-12 lg:grid-cols-[1.4fr_0.7fr_1fr] lg:items-end">
+<footer class="border-t border-black/10 bg-[#17120f] text-[#f8f4ec]">
+  <div class="shell grid gap-12 py-14 lg:grid-cols-[1.4fr_0.7fr_1fr] lg:items-end">
     <div class="max-w-xl space-y-4">
-      <p class="font-display text-2xl font-semibold text-[#111111]">{companyName}</p>
-      <p class="body-muted">{copy.footer.strapline}</p>
+      <p class="font-display text-3xl font-semibold">{companyName}</p>
+      <p class="text-sm leading-6 text-white/62">{copy.footer.strapline}</p>
     </div>
 
     <div class="space-y-3">
-      <h3 class="eyebrow">{lang === "en" ? "Pages" : "Страници"}</h3>
-      <ul class="space-y-2 text-sm text-[rgba(17,17,17,0.62)]">
+      <h3 class="eyebrow eyebrow-on-dark">{lang === "en" ? "Pages" : "Страници"}</h3>
+      <ul class="space-y-2 text-sm text-white/62">
         {navigationItems.filter((item) => item.key !== "contact").map((item) => (
           <li>
-            <a class="hover:text-[#111111]" href={lang === "en" ? item.path : item.bgPath}>
+            <a class="hover:text-white" href={lang === "en" ? item.path : item.bgPath}>
               {copy.nav[item.key]}
             </a>
           </li>
         ))}
         <li>
-          <a class="hover:text-[#111111]" href={lang === "en" ? "/contact" : "/bg/contact"}>
+          <a class="hover:text-white" href={lang === "en" ? "/contact" : "/bg/contact"}>
             {copy.actions.contact}
           </a>
         </li>
@@ -38,13 +38,11 @@ const companyName = lang === "en" ? company.nameEn : company.nameBg;
     </div>
 
     <div class="space-y-3">
-      <h3 class="eyebrow">{lang === "en" ? "Company" : "Компания"}</h3>
-      <ul class="space-y-2 text-sm text-[rgba(17,17,17,0.62)]">
+      <h3 class="eyebrow eyebrow-on-dark">{lang === "en" ? "Company" : "Компания"}</h3>
+      <ul class="space-y-2 text-sm text-white/62">
         <li>{company.addressPlaceholder}</li>
         <li>{company.phonePlaceholder}</li>
         <li>{company.emailPlaceholder}</li>
-        <li>{lang === "en" ? `EIK ${company.eik}` : `ЕИК ${company.eik}`}</li>
-        <li>{lang === "en" ? `VAT ${company.vat}` : `ДДС ${company.vat}`}</li>
       </ul>
     </div>
 </div>

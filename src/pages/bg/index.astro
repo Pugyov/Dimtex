@@ -1,28 +1,68 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import HomeSewingOverlay from "../../components/HomeSewingOverlay.astro";
-import { company } from "../../data/company";
+import FactoryImage from "../../components/FactoryImage.astro";
+import { factoryImages, homeContent } from "../../data/company";
 import { pageMeta } from "../../data/translations";
 
 const lang = "bg";
-const brand = company.nameBg;
+const content = homeContent.bg;
+const workshopImage = {
+  src: factoryImages.workshop.src,
+  fallbackSrc: factoryImages.workshop.fallbackSrc,
+  alt: factoryImages.workshop.alt.bg
+};
+const sewingImage = {
+  src: factoryImages.sewingDetail.src,
+  fallbackSrc: factoryImages.sewingDetail.fallbackSrc,
+  alt: factoryImages.sewingDetail.alt.bg
+};
 ---
 
-<BaseLayout title={pageMeta.bg.home.title} description={pageMeta.bg.home.description} lang={lang} hideChrome noScroll>
-  <section class="hero-gridline relative min-h-svh overflow-hidden" data-hero-surface>
-    <div class="shell hero-stage flex min-h-svh items-center py-12 sm:py-14 lg:py-16">
-      <div class="w-full">
-        <div class="hero-copy hero-brand-layout space-y-8">
-          <div class="hero-wordmark-wrap hero-entry hero-entry-delay-1" data-lang={lang}>
-            <h1 class="hero-brand-wordmark">{brand}</h1>
-            <HomeSewingOverlay lang={lang} brand={brand} />
-          </div>
-          <div class="hero-brand-actions flex flex-wrap gap-x-8 gap-y-3 text-sm uppercase tracking-[0.18em] text-[rgba(17,17,17,0.56)]">
-            <a href="/bg/about" class="hero-action hero-entry hero-entry-delay-2 border-b border-transparent pb-1 hover:border-black/70 hover:text-[#111111]">За нас</a>
-            <a href="/bg/contact" class="hero-action hero-entry hero-entry-delay-2 border-b border-black/20 pb-1 text-[#111111] hover:border-black/70">Свържете се с нас</a>
-            <a href="/" class="hero-action hero-entry hero-entry-delay-3 text-[rgba(17,17,17,0.42)] hover:text-[#111111]">English</a>
-          </div>
+<BaseLayout title={pageMeta.bg.home.title} description={pageMeta.bg.home.description} lang={lang}>
+  <section class="editorial-hero">
+    <FactoryImage image={workshopImage} loading="eager" sizes="100vw" class="editorial-hero-media" />
+    <div class="editorial-hero-shade" aria-hidden="true"></div>
+    <div class="shell editorial-hero-content">
+      <div class="max-w-4xl space-y-7">
+        <p class="editorial-kicker hero-entry">{content.heroLabel}</p>
+        <h1 class="editorial-heading hero-entry hero-entry-delay-1">{content.heroTitle}</h1>
+        <p class="editorial-lede hero-entry hero-entry-delay-2 max-w-2xl">{content.heroIntro}</p>
+        <div class="hero-entry hero-entry-delay-3 flex flex-wrap gap-3">
+          <a href="/bg/contact" class="button-primary">{content.primaryAction}</a>
+          <a href="/bg/about" class="button-secondary">{content.secondaryAction}</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="shell process-layout">
+      <div class="process-copy">
+        <p class="eyebrow">{content.processLabel}</p>
+        <h2 class="section-title">{content.processTitle}</h2>
+        <p class="body-copy max-w-lg">{content.processIntro}</p>
+      </div>
+      <div class="process-media">
+        <FactoryImage image={sewingImage} sizes="(min-width: 1024px) 50vw, 100vw" class="aspect-[4/5] w-full object-cover" />
+      </div>
+      <div class="process-steps">
+        {content.processSteps.map((step) => (
+          <div class="process-step">
+            <p class="process-step-label">{step.label}</p>
+            <p class="process-step-text">{step.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="shell cta-layout">
+      <h2 class="section-title text-paper">{content.finalTitle}</h2>
+      <div class="space-y-6">
+        <p class="dark-copy">{content.finalBody}</p>
+        <a href="/bg/contact" class="button-primary button-on-dark">{content.finalAction}</a>
+      </div>
+    </div>
   </section>
 </BaseLayout>

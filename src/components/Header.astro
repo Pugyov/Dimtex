@@ -22,10 +22,10 @@ const navItems = navigationItems.map((item) => ({
 }));
 ---
 
-<header class="sticky top-0 z-40 border-b border-black/6 bg-[rgba(251,251,248,0.9)] backdrop-blur-xl">
+<header class="sticky top-0 z-40 border-b border-black/10 bg-[rgba(248,244,236,0.92)] backdrop-blur-xl">
   <div class="shell flex min-h-[5.25rem] items-center justify-between gap-6 py-4">
     <a href={lang === "en" ? "/" : "/bg"} class="min-w-0">
-      <span class="block font-display text-[1.75rem] font-semibold tracking-[0.02em] text-[#111111] sm:text-[1.95rem]">{copy.brand}</span>
+      <span class="block font-display text-[1.75rem] font-semibold tracking-[0.02em] text-[#17120f] sm:text-[1.95rem]">{copy.brand}</span>
     </a>
 
     <nav class="hidden items-center gap-6 lg:flex" aria-label={lang === "en" ? "Primary navigation" : "Основна навигация"}>
@@ -34,7 +34,7 @@ const navItems = navigationItems.map((item) => ({
           href={item.href}
           class:list={[
             "text-sm text-[rgba(17,17,17,0.56)] hover:text-[#111111] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
-            item.active ? "text-[#111111]" : ""
+            item.active ? "text-[#17120f]" : ""
           ]}
           aria-current={item.active ? "page" : undefined}
         >
@@ -43,7 +43,7 @@ const navItems = navigationItems.map((item) => ({
       ))}
       <a
         href={lang === "en" ? "/contact" : "/bg/contact"}
-        class="border-b border-[rgba(17,17,17,0.25)] pb-1 text-sm text-[#111111] transition hover:border-[rgba(17,17,17,0.7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+        class="rounded-full bg-[#7f1d1d] px-4 py-2 text-sm text-white transition hover:bg-[#641515] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
       >
         {copy.actions.contact}
       </a>

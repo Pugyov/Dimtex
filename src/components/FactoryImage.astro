@@ -1,0 +1,32 @@
+---
+import { existsSync } from "node:fs";
+
+interface FactoryImageData {
+  src: string;
+  fallbackSrc: string;
+  alt: string;
+}
+
+interface Props {
+  image: FactoryImageData;
+  class?: string;
+  loading?: "eager" | "lazy";
+  sizes?: string;
+}
+
+const { image, class: className = "", loading = "lazy", sizes } = Astro.props;
+const publicPath = image.src.startsWith("/") ? image.src.slice(1) : image.src;
+const realImageExists = existsSync(new URL(`../../public/${publicPath}`, import.meta.url));
+const resolvedSrc = realImageExists ? image.src : image.fallbackSrc;
+---
+
+<img
+  src={resolvedSrc}
+  alt={image.alt}
+  class:list={["factory-photo", className]}
+  loading={loading}
+  decoding="async"
+  sizes={sizes}
+  data-fallback-src={image.fallbackSrc}
+  onerror="this.onerror=null; if (this.dataset.fallbackSrc) this.src=this.dataset.fallbackSrc;"
+/>

@@ -1,36 +1,44 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContactForm from "../../components/ContactForm.astro";
-import { company } from "../../data/company";
-import { pageMeta, siteCopy } from "../../data/translations";
+import FactoryImage from "../../components/FactoryImage.astro";
+import { contactContent, factoryImages } from "../../data/company";
+import { pageMeta } from "../../data/translations";
 
 const lang = "bg";
-const copy = siteCopy.bg;
+const content = contactContent.bg;
+const contactImage = {
+  src: factoryImages.sewingDetail.src,
+  fallbackSrc: factoryImages.sewingDetail.fallbackSrc,
+  alt: factoryImages.sewingDetail.alt.bg
+};
 ---
 
 <BaseLayout title={pageMeta.bg.contact.title} description={pageMeta.bg.contact.description} lang={lang}>
-  <section class="section-space">
-    <div class="shell space-y-16">
-      <div class="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-end">
-        <div class="space-y-6">
-          <p class="eyebrow hero-entry">Контакт</p>
-          <h1 class="display-title hero-entry hero-entry-delay-1 max-w-4xl">Директен контакт за производствени запитвания.</h1>
-        </div>
-        <p class="body-copy hero-entry hero-entry-delay-2 max-w-xl">{copy.forms.contactTitle}</p>
+  <section class="profile-hero">
+    <div class="shell profile-hero-grid">
+      <div class="space-y-6">
+        <p class="eyebrow hero-entry">{content.heroLabel}</p>
+        <h1 class="profile-title hero-entry hero-entry-delay-1">{content.heroTitle}</h1>
       </div>
+      <p class="profile-lede hero-entry hero-entry-delay-2">{content.heroIntro}</p>
+    </div>
+  </section>
 
-      <div class="rule grid gap-12 pt-10 lg:grid-cols-[0.8fr_1.2fr]">
-        <dl class="hero-entry hero-entry-delay-3 grid gap-7">
-          <div class="grid gap-2 border-b border-black/10 pb-5 sm:grid-cols-[7rem_1fr]"><dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">Компания</dt><dd class="text-lg text-[#111111]">{company.nameBg}</dd></div>
-          <div class="grid gap-2 border-b border-black/10 pb-5 sm:grid-cols-[7rem_1fr]"><dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">Адрес</dt><dd class="text-lg text-[#111111]">{company.addressPlaceholder}</dd></div>
-          <div class="grid gap-2 border-b border-black/10 pb-5 sm:grid-cols-[7rem_1fr]"><dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">Телефон</dt><dd class="text-lg text-[#111111]">{company.phonePlaceholder}</dd></div>
-          <div class="grid gap-2 border-b border-black/10 pb-5 sm:grid-cols-[7rem_1fr]"><dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">Имейл</dt><dd class="text-lg text-[#111111]">{company.emailPlaceholder}</dd></div>
-          <div class="grid gap-2 border-b border-black/10 pb-5 sm:grid-cols-[7rem_1fr]"><dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">ЕИК</dt><dd class="text-lg text-[#111111]">{company.eik}</dd></div>
-          <div class="grid gap-2 border-b border-black/10 pb-5 sm:grid-cols-[7rem_1fr]"><dt class="text-[0.7rem] uppercase tracking-[0.22em] text-[rgba(17,17,17,0.42)]">ДДС</dt><dd class="text-lg text-[#111111]">{company.vat}</dd></div>
-        </dl>
-        <div class="hero-entry hero-entry-delay-3 lg:pl-10">
-          <ContactForm lang={lang} successPath="/bg/contact-success" />
+  <section class="profile-section">
+    <div class="shell profile-intro contact-profile">
+      <aside class="contact-aside hero-entry hero-entry-delay-3">
+        <FactoryImage image={contactImage} sizes="(min-width: 1024px) 42vw, 100vw" class="profile-photo contact-photo" />
+        <p class="image-caption">{content.imageCaption}</p>
+      </aside>
+
+      <div class="profile-copy contact-form-wrap hero-entry hero-entry-delay-3">
+        <div class="profile-section-heading contact-form-heading">
+          <p class="eyebrow">{content.heroLabel}</p>
+          <h2 class="profile-section-title">{content.formTitle}</h2>
+          <p class="body-copy">{content.formIntro}</p>
         </div>
+        <ContactForm lang={lang} successPath="/bg/contact-success" />
       </div>
     </div>
   </section>
