@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { title, description, lang, canonical, ogTitle, ogDescription, hideChrome = false, noScroll = false } = Astro.props;
-const siteUrl = "https://www.dimtex.bg";
+const siteUrl = "https://dimtex.bg";
 const canonicalUrl = canonical ? new URL(canonical, siteUrl).toString() : new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
