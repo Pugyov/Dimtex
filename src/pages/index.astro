@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FactoryImage from "../components/FactoryImage.astro";
-import { factoryImages, homeContent } from "../data/company";
+import { factoryImages, homeContent, partnerLogos } from "../data/company";
 import { pageMeta } from "../data/translations";
 
 const lang = "en";
@@ -20,16 +20,38 @@ const sewingImage = {
 
 <BaseLayout title={pageMeta.en.home.title} description={pageMeta.en.home.description} lang={lang}>
   <section class="editorial-hero">
-    <FactoryImage image={workshopImage} loading="eager" sizes="100vw" class="editorial-hero-media" />
-    <div class="editorial-hero-shade" aria-hidden="true"></div>
-    <div class="shell editorial-hero-content">
-      <div class="max-w-4xl space-y-7">
-        <p class="editorial-kicker hero-entry">{content.heroLabel}</p>
-        <h1 class="editorial-heading hero-entry hero-entry-delay-1">{content.heroTitle}</h1>
-        <p class="editorial-lede hero-entry hero-entry-delay-2 max-w-2xl">{content.heroIntro}</p>
-        <div class="hero-entry hero-entry-delay-3 flex flex-wrap gap-3">
-          <a href="/contact" class="button-primary">{content.primaryAction}</a>
-          <a href="/about" class="button-secondary">{content.secondaryAction}</a>
+    <div class="shell editorial-hero-shell">
+      <div class="editorial-hero-main">
+        <div class="editorial-hero-copy">
+          <p class="editorial-kicker hero-entry">{content.heroLabel}</p>
+          <h1 class="editorial-heading hero-entry hero-entry-delay-1">{content.heroTitle}</h1>
+          <p class="editorial-lede hero-entry hero-entry-delay-2">{content.heroIntro}</p>
+          <div class="hero-entry hero-entry-delay-3 flex flex-wrap gap-3">
+            <a href="/contact" class="button-primary">{content.primaryAction}</a>
+            <a href="/about" class="button-secondary">{content.secondaryAction}</a>
+          </div>
+        </div>
+        <div class="editorial-hero-visual hero-entry hero-entry-delay-2">
+          <FactoryImage image={workshopImage} loading="eager" sizes="(min-width: 1024px) 45vw, 100vw" class="editorial-hero-media" />
+        </div>
+      </div>
+      <div class="hero-partners hero-entry hero-entry-delay-3" aria-label={content.partnersLabel}>
+        <p class="hero-partners-label">{content.partnersLabel}</p>
+        <div class="hero-partner-logos">
+          {partnerLogos.map((logo) => (
+            <img
+              src={logo.src}
+              alt={logo.alt.en}
+              class:list={[
+                "hero-partner-logo",
+                logo.name === "Maria de la Orden" ? "hero-partner-logo-force" : "",
+                logo.name === "Kenzo" ? "hero-partner-logo-kenzo" : "",
+                logo.name === "Me and My" ? "hero-partner-logo-square" : ""
+              ]}
+              loading="lazy"
+              decoding="async"
+            />
+          ))}
         </div>
       </div>
     </div>
@@ -37,17 +59,17 @@ const sewingImage = {
 
   <section class="section-space">
     <div class="shell process-layout">
-      <div class="process-copy">
+      <div class="process-copy" data-page-reveal>
         <p class="eyebrow">{content.processLabel}</p>
         <h2 class="section-title">{content.processTitle}</h2>
         <p class="body-copy max-w-lg">{content.processIntro}</p>
       </div>
-      <div class="process-media">
-        <FactoryImage image={sewingImage} sizes="(min-width: 1024px) 50vw, 100vw" class="aspect-[4/5] w-full object-cover" />
+      <div class="process-media" data-page-reveal>
+        <FactoryImage image={sewingImage} sizes="(min-width: 1024px) 50vw, 100vw" class="image-cut aspect-[4/5] w-full object-cover" />
       </div>
       <div class="process-steps">
-        {content.processSteps.map((step) => (
-          <div class="process-step">
+        {content.processSteps.map((step, index) => (
+          <div class="process-step" data-page-reveal style={`--reveal-index: ${index}`}>
             <p class="process-step-label">{step.label}</p>
             <p class="process-step-text">{step.text}</p>
           </div>
@@ -58,8 +80,8 @@ const sewingImage = {
 
   <section class="cta-band">
     <div class="shell cta-layout">
-      <h2 class="section-title text-paper">{content.finalTitle}</h2>
-      <div class="space-y-6">
+      <h2 class="section-title text-paper" data-page-reveal>{content.finalTitle}</h2>
+      <div class="space-y-6" data-page-reveal>
         <p class="dark-copy">{content.finalBody}</p>
         <a href="/contact" class="button-primary button-on-dark">{content.finalAction}</a>
       </div>

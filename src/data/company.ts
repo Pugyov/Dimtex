@@ -24,38 +24,219 @@ export const company = {
 
 export const factoryImages = {
   workshop: {
-    src: "/images/factory/Garment Factory Construction Guidelines.jpeg",
-    fallbackSrc: "/images/placeholders/production-floor.svg",
+    src: "/images/factory/workshop.jpeg",
+    fallbackSrc: "/images/factory/tailor's.jpeg",
     alt: {
-      en: "DIMTEX garment production workshop in Blagoevgrad",
-      bg: "Производствено помещение на ДИМТЕКС в Благоевград"
+      en: "DIMTEX workshop floor with production stations",
+      bg: "Производствен цех на ДИМТЕКС с работни станции"
     }
   },
   sewingDetail: {
-    src: "/images/gallery/Garment Factory Image.jpg",
-    fallbackSrc: "/images/placeholders/machines.svg",
+    src: "/images/factory/ironing.jpeg",
+    fallbackSrc: "/images/factory/warehouse.jpeg",
     alt: {
-      en: "Sewing detail from trouser production",
-      bg: "Детайл от шиене при производство на панталони"
+      en: "DIMTEX ironing and finishing area for garment production",
+      bg: "Зона за гладене и довършване на облекла в ДИМТЕКС"
     }
   },
   teamOrFamily: {
-    src: "/images/gallery/teamphoto.jpg",
-    fallbackSrc: "/images/placeholders/team.svg",
+    src: "/images/factory/tailor's.jpeg",
+    fallbackSrc: "/images/factory/workshop.jpeg",
     alt: {
-      en: "DIMTEX family-owned production team",
-      bg: "Семеен производствен екип на ДИМТЕКС"
+      en: "DIMTEX cutting and tailoring room in Blagoevgrad",
+      bg: "Кроялно и шивашка подготовка на ДИМТЕКС в Благоевград"
     }
   }
 } as const;
 
+export const machineryImages = [
+  {
+    src: "/images/machinery/IMG_1749.jpeg",
+    fallbackSrc: "/images/factory/workshop.jpeg",
+    machineName: {
+      en: "JUKI LK-1903 / LK-1903A series",
+      bg: "JUKI LK-1903 / LK-1903A серия"
+    },
+    caption: {
+      en: "Button sewing support for clean, consistent fastening details.",
+      bg: "Машина за чисто и последователно пришиване на копчета."
+    },
+    alt: {
+      en: "JUKI LK-1903 series button attaching sewing machine at DIMTEX",
+      bg: "Шевна машина JUKI LK-1903 серия за пришиване на копчета в ДИМТЕКС"
+    }
+  },
+  {
+    src: "/images/machinery/IMG_1763.jpeg",
+    fallbackSrc: "/images/factory/workshop.jpeg",
+    machineName: {
+      en: "JUKI LK-1900A series",
+      bg: "JUKI LK-1900A серия"
+    },
+    caption: {
+      en: "High-speed bar-tacking for reinforced stress points and durable details.",
+      bg: "Високоскоростна понт машина за укрепени зони и устойчиви детайли."
+    },
+    alt: {
+      en: "JUKI LK-1900A series electronic bar-tacking machine at DIMTEX",
+      bg: "Електронна понт машина JUKI LK-1900A серия в ДИМТЕКС"
+    }
+  },
+  {
+    src: "/images/machinery/IMG_1753.jpeg",
+    fallbackSrc: "/images/factory/workshop.jpeg",
+    machineName: {
+      en: "Dürkopp Adler 745-34 / 745-34 S",
+      bg: "Dürkopp Adler 745-34 / 745-34 S"
+    },
+    caption: {
+      en: "Automatic pocket welting for precise openings and consistent pocket construction.",
+      bg: "Автоматични филетки за прецизни отвори и постоянна конструкция на джоба."
+    },
+    alt: {
+      en: "Dürkopp Adler 745-34 automatic pocket-welting machine at DIMTEX",
+      bg: "Автоматична машина Dürkopp Adler 745-34 за филетки на джобове в ДИМТЕКС"
+    }
+  },
+  {
+    src: "/images/factory/workshop.jpeg",
+    fallbackSrc: "/images/factory/tailor's.jpeg",
+    machineName: {
+      en: "Workshop floor",
+      bg: "Производствен цех"
+    },
+    caption: {
+      en: "A clear view of the production floor and the working rhythm between stations.",
+      bg: "Ясен поглед към производствения цех и работния ритъм между станциите."
+    },
+    alt: {
+      en: "DIMTEX workshop floor with sewing and production stations",
+      bg: "Производствен цех на ДИМТЕКС с шевни и работни станции"
+    }
+  },
+  {
+    src: "/images/factory/tailor's.jpeg",
+    fallbackSrc: "/images/factory/workshop.jpeg",
+    machineName: {
+      en: "Cutting and tailoring tables",
+      bg: "Маси за кроене и шивашка подготовка"
+    },
+    caption: {
+      en: "Fabric is prepared, aligned, and handled before it moves into sewing.",
+      bg: "Платът се подготвя, подравнява и обработва преди преминаване към шиене."
+    },
+    alt: {
+      en: "DIMTEX cutting and tailoring tables with fabric layers",
+      bg: "Маси за кроене и шивашка подготовка с пластове плат в ДИМТЕКС"
+    }
+  },
+  {
+    src: "/images/factory/ironing.jpeg",
+    fallbackSrc: "/images/factory/tailor's.jpeg",
+    machineName: {
+      en: "Ironing and finishing station",
+      bg: "Гладене и довършителни операции"
+    },
+    caption: {
+      en: "Pressing and finishing prepare garments for final review and packing.",
+      bg: "Гладенето и довършването подготвят изделията за финален преглед и опаковане."
+    },
+    alt: {
+      en: "DIMTEX ironing and finishing station for garments",
+      bg: "Станция за гладене и довършване на облекла в ДИМТЕКС"
+    }
+  },
+  {
+    src: "/images/factory/warehouse.jpeg",
+    fallbackSrc: "/images/factory/tailor's.jpeg",
+    machineName: {
+      en: "Warehouse and packing area",
+      bg: "Склад и зона за опаковане"
+    },
+    caption: {
+      en: "Finished garments are organized for packing, storage, and delivery.",
+      bg: "Готовите изделия се организират за опаковане, съхранение и доставка."
+    },
+    alt: {
+      en: "DIMTEX warehouse and packing area with cartons and garments",
+      bg: "Склад и зона за опаковане в ДИМТЕКС с кашони и облекла"
+    }
+  }
+] as const;
+
+type PartnerLogo = {
+  name: string;
+  src: `/images/Partners/${string}`;
+  alt: {
+    en: string;
+    bg: string;
+  };
+};
+
+export const partnerLogos = [
+  {
+    name: "Maria de la Orden",
+    src: "/images/Partners/Maria de la Orden Logo.avif",
+    alt: {
+      en: "Maria de la Orden logo",
+      bg: "Лого на Maria de la Orden"
+    }
+  },
+  {
+    name: "Anne Fontaine",
+    src: "/images/Partners/Anne Fontaine Logo.svg",
+    alt: {
+      en: "Anne Fontaine logo",
+      bg: "Лого на Anne Fontaine"
+    }
+  },
+  {
+    name: "Kenzo",
+    src: "/images/Partners/Kenzo Logo.png",
+    alt: {
+      en: "Kenzo logo",
+      bg: "Лого на Kenzo"
+    }
+  },
+  {
+    name: "JOSEPH",
+    src: "/images/Partners/JOSEPH Logo 2023.webp",
+    alt: {
+      en: "JOSEPH logo",
+      bg: "Лого на JOSEPH"
+    }
+  },
+  {
+    name: "Me and My",
+    src: "/images/Partners/Me and My Logo.png",
+    alt: {
+      en: "Me and My logo",
+      bg: "Лого на Me and My"
+    }
+  },
+  {
+    name: "Figaro Fashion",
+    src: "/images/Partners/Figaro Fashion Logo.png",
+    alt: {
+      en: "Figaro Fashion logo",
+      bg: "Лого на Figaro Fashion"
+    }
+  }
+] as const satisfies readonly PartnerLogo[];
+
 export const homeContent = {
   en: {
-    heroLabel: "Blagoevgrad, Bulgaria",
+    heroLabel: "Built to sew, trusted to deliver",
     heroTitle: "Family-owned trouser production since 1997.",
     heroIntro: "DIMTEX makes men's and women's trousers for clients who need close communication, careful sewing, and dependable subcontract production.",
     primaryAction: "Send inquiry",
     secondaryAction: "View company",
+    partnersLabel: "Our Biggest Clients",
+    heroHighlights: [
+      { label: "Since", title: "1997", text: "Family-owned garment production in Blagoevgrad." },
+      { label: "Focus", title: "Trousers", text: "Men's and women's trouser manufacturing." },
+      { label: "Work", title: "Subcontract", text: "Organized sewing capacity for apparel partners." }
+    ],
     processLabel: "Production flow",
     processTitle: "Clear steps, close control.",
     processIntro: "A compact workshop rhythm keeps the work visible from first sample to finished delivery.",
@@ -70,11 +251,17 @@ export const homeContent = {
     finalAction: "Contact DIMTEX"
   },
   bg: {
-    heroLabel: "Благоевград, България",
+    heroLabel: "Шием прецизно, доставяме сигурно",
     heroTitle: "Семейно производство на панталони от 1997 г.",
     heroIntro: "ДИМТЕКС произвежда мъжки и дамски панталони за клиенти, които търсят директна комуникация, прецизно шиене и надеждно подизпълнение.",
     primaryAction: "Изпратете запитване",
     secondaryAction: "Вижте компанията",
+    partnersLabel: "Нашите партньори",
+    heroHighlights: [
+      { label: "От", title: "1997", text: "Семейно производство на облекло в Благоевград." },
+      { label: "Фокус", title: "Панталони", text: "Производство на мъжки и дамски панталони." },
+      { label: "Работа", title: "Подизпълнение", text: "Организиран шивашки капацитет за партньори." }
+    ],
     processLabel: "Производствен процес",
     processTitle: "Ясни стъпки, близък контрол.",
     processIntro: "Компактният работен ритъм поддържа видимост от първата мостра до готовата доставка.",
@@ -93,91 +280,153 @@ export const homeContent = {
 export const aboutContent = {
   en: {
     heroLabel: "About DIMTEX LTD",
-    heroTitle: "Garment production in Blagoevgrad since 1997.",
-    heroIntro: "DIMTEX is a family-owned clothing manufacturer focused on men's and women's trousers, sewing services, and subcontract production.",
-    profileTitle: "A practical production partner.",
+    heroTitle: "Inside a focused trouser workshop.",
+    heroIntro: "Since 1997, DIMTEX has produced men's and women's trousers in Blagoevgrad with direct communication, skilled sewing, and reliable subcontract capacity.",
+    profileTitle: "Reliable trouser production with direct oversight.",
     profileParagraphs: [
-      "From our base in Blagoevgrad, Bulgaria, we support apparel clients with focused garment manufacturing and direct communication.",
-      "Our work is organized around repeatable trouser production, consistent sewing, and clear handover from technical requirements to finished garments."
+      "Clients work with a focused Bulgarian workshop that turns approved specifications into organized production runs.",
+      "Our team supports sampling, sewing, finishing, and delivery with clear communication throughout the order."
     ],
-    capabilitiesLabel: "What we do",
+    walkthroughLabel: "Workshop walkthrough",
+    walkthroughTitle: "From brief to finished garments.",
+    walkthroughIntro: "See the key stages clients can expect when an order enters our workshop.",
+    walkthroughSteps: [
+      {
+        label: "01 / Briefing",
+        title: "Clear production brief",
+        text: "Style details, quantities, materials, timing, and finish requirements are aligned before work begins."
+      },
+      {
+        label: "02 / Setup",
+        title: "Production setup",
+        text: "The order is prepared across the right sewing and finishing stations for the garment."
+      },
+      {
+        label: "03 / Review",
+        title: "In-process checks",
+        text: "Fit, seams, closures, and finishing details are reviewed while production is active."
+      },
+      {
+        label: "04 / Handover",
+        title: "Ready for delivery",
+        text: "Garments are finished, packed, and prepared for handover from Blagoevgrad."
+      }
+    ],
+    galleryLabel: "Workshop gallery",
+    galleryTitle: "Workshop details ready for client review.",
+    galleryIntro: "",
+    galleryPreviousLabel: "Previous gallery photo",
+    galleryNextLabel: "Next gallery photo",
+    capabilitiesLabel: "Client assessment",
     capabilities: [
       {
-        title: "Trouser production",
-        text: "Men's and women's trousers produced to client specifications."
+        title: "Trouser specialization",
+        text: "Men's and women's trousers built around construction, fit, and finish expectations."
       },
       {
-        title: "Sewing services",
-        text: "Focused sewing support for apparel production runs."
+        title: "Accessible decisions",
+        text: "Production questions are handled close to the people making the garments."
       },
       {
-        title: "Subcontract manufacturing",
-        text: "Production capacity for partners who need organized execution."
+        title: "Subcontract fit",
+        text: "A focused setup for partners who need dependable sewing capacity and consistent delivery."
       }
     ],
     snapshots: [
       {
-        label: "Family-owned",
-        title: "Decisions stay close to the floor.",
-        text: "The company is run with direct responsibility, short communication lines, and long-term working relationships."
+        label: "Owner-led",
+        title: "Direct responsibility on every order.",
+        text: "A family-owned workshop with long-term client relationships and clear accountability."
       },
       {
         label: "Production focus",
         title: "Trousers for men and women.",
-        text: "The workshop is organized around repeatable garment production, fit, finishing, and consistency."
-      },
-      {
-        label: "Experience",
-        title: "Built through international work.",
-        text: "Intermediary partnerships have shaped a practical understanding of apparel standards and client requirements."
+        text: "The workshop is arranged around steady trouser work, fit, finishing, and consistency."
       }
     ],
-    closingTitle: "Send us your production details.",
-    closingAction: "Contact us"
+    partnerStandardLabel: "Working standard",
+    partnerStandardTitle: "Clear communication supports every production run.",
+    partnerStandardIntro: "DIMTEX gives clients practical answers while the work is being planned and produced.",
+    partnerStandardItems: [
+      "Requirements are aligned before production starts.",
+      "Production questions are resolved quickly.",
+      "Repeat styles are kept consistent across future orders."
+    ]
   },
   bg: {
     heroLabel: "За ДИМТЕКС ООД",
-    heroTitle: "Производство на облекло в Благоевград от 1997 г.",
-    heroIntro: "ДИМТЕКС е семейна компания за производство на облекло с фокус върху мъжки и дамски панталони, шивашки услуги и подизпълнение.",
-    profileTitle: "Практичен производствен партньор.",
+    heroTitle: "Вътре във фокусиран шивашки цех за панталони.",
+    heroIntro: "От 1997 г. ДИМТЕКС произвежда мъжки и дамски панталони в Благоевград с директна комуникация, прецизно шиене и надежден подизпълнителски капацитет.",
+    profileTitle: "Надеждно производство на панталони, близо до реалната работа.",
     profileParagraphs: [
-      "От нашата база в Благоевград подпомагаме клиенти в сферата на облеклото с фокусирано производство и директна комуникация.",
-      "Работата ни е организирана около повторяемо производство на панталони, постоянно качество на шиене и ясно изпълнение на техническите изисквания."
+      "Клиентите работят с фокусиран български цех, който превръща одобрени спецификации в организирани производствени серии.",
+      "Екипът ни подкрепя мостри, шиене, довършване и доставка с ясна комуникация през цялата поръчка."
     ],
-    capabilitiesLabel: "Какво правим",
+    walkthroughLabel: "Разходка през цеха",
+    walkthroughTitle: "От задание до готови изделия.",
+    walkthroughIntro: "Вижте основните етапи, които клиентите могат да очакват, когато поръчката влезе в нашия цех.",
+    walkthroughSteps: [
+      {
+        label: "01 / Задание",
+        title: "Ясно производствено задание",
+        text: "Детайли по модела, количества, материали, срокове и изисквания за завършек се уточняват преди работа."
+      },
+      {
+        label: "02 / Подготовка",
+        title: "Подготовка за производство",
+        text: "Поръчката се разпределя към правилните шевни и довършителни станции според изделието."
+      },
+      {
+        label: "03 / Преглед",
+        title: "Проверки в процеса",
+        text: "Силует, шевове, закопчаване и довършителни детайли се преглеждат, докато производството е активно."
+      },
+      {
+        label: "04 / Предаване",
+        title: "Готови за доставка",
+        text: "Изделията се довършват, опаковат и подготвят за предаване от Благоевград."
+      }
+    ],
+    galleryLabel: "Галерия от цеха",
+    galleryTitle: "Детайли от цеха, готови за клиентски преглед.",
+    galleryIntro: "",
+    galleryPreviousLabel: "Предишна снимка от галерията",
+    galleryNextLabel: "Следваща снимка от галерията",
+    capabilitiesLabel: "За оценка от клиенти",
     capabilities: [
       {
-        title: "Производство на панталони",
-        text: "Мъжки и дамски панталони по клиентски спецификации."
+        title: "Специализация в панталони",
+        text: "Мъжки и дамски модели, изградени около конструкция, силует и очакван завършек."
       },
       {
-        title: "Шивашки услуги",
-        text: "Фокусирана шивашка подкрепа за производствени серии."
+        title: "Близки решения",
+        text: "Производствените въпроси се решават близо до хората, които изработват изделията."
       },
       {
-        title: "Подизпълнително производство",
-        text: "Производствен капацитет за партньори, които търсят организирано изпълнение."
+        title: "Подходящо подизпълнение",
+        text: "Фокусирана организация за партньори, които търсят надежден шивашки капацитет и постоянна доставка."
       }
     ],
     snapshots: [
       {
-        label: "Семейна компания",
-        title: "Решения близо до производството.",
-        text: "Компанията работи с пряка отговорност, кратка комуникация и дългосрочни производствени отношения."
+        label: "Собственическо управление",
+        title: "Пряка отговорност във всяка поръчка.",
+        text: "Семеен цех с дългосрочни клиентски отношения и ясна отговорност."
       },
       {
         label: "Производствен фокус",
         title: "Панталони за мъже и жени.",
-        text: "Базата е организирана около повторяемо производство, силует, завършек и постоянство."
-      },
-      {
-        label: "Опит",
-        title: "Изграден чрез международна работа.",
-        text: "Партньорства чрез посредници оформят практическо разбиране за стандарти и клиентски изисквания."
+        text: "Базата е подредена около стабилна работа с панталони, силует, завършек и постоянство."
       }
     ],
-    closingTitle: "Изпратете производствено запитване.",
-    closingAction: "Свържете се с нас"
+    partnerStandardLabel: "Стандарт на работа",
+    partnerStandardTitle: "Ясната комуникация подкрепя всяка производствена серия.",
+    partnerStandardIntro: "ДИМТЕКС дава на клиентите практични отговори, докато работата се планира и произвежда.",
+    partnerStandardItems: [
+      "Изискванията се уточняват преди старт на производството.",
+      "Въпросите от цеха се решават бързо.",
+      "Повтарящите се модели се поддържат последователно в бъдещи поръчки."
+    ]
   }
 } as const;
 

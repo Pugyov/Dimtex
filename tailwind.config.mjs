@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#111827",
-        muted: "#6b7280",
-        paper: "#f6f7f9",
-        brand: "#12355b",
-        accent: "#9f1239",
-        steel: "#d9dde4"
+        ink: "#17201c",
+        muted: "#6f766f",
+        paper: "#f7f3ea",
+        brand: "#4f5d4f",
+        accent: "#c8843e",
+        steel: "#d8d2c4"
       },
       fontFamily: {
-        display: ["'Cormorant Garamond'", "serif"],
-        body: ["'Instrument Sans'", "sans-serif"]
+        display: ["Manrope", "system-ui", "sans-serif"],
+        body: ["Manrope", "system-ui", "sans-serif"]
       },
       letterSpacing: {
         calm: "0.08em"

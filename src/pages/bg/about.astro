@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FactoryImage from "../../components/FactoryImage.astro";
-import { aboutContent, factoryImages } from "../../data/company";
+import { aboutContent, factoryImages, machineryImages } from "../../data/company";
 import { pageMeta } from "../../data/translations";
 
 const lang = "bg";
@@ -11,10 +11,26 @@ const teamImage = {
   fallbackSrc: factoryImages.teamOrFamily.fallbackSrc,
   alt: factoryImages.teamOrFamily.alt.bg
 };
+const bannerImage = {
+  src: factoryImages.workshop.src,
+  fallbackSrc: factoryImages.workshop.fallbackSrc,
+  alt: factoryImages.workshop.alt.bg
+};
+const galleryItems = machineryImages.map((item) => ({
+  image: {
+    src: item.src,
+    fallbackSrc: item.fallbackSrc,
+    alt: item.alt.bg
+  },
+  machineName: item.machineName.bg,
+  caption: item.caption.bg
+}));
 ---
 
-<BaseLayout title={pageMeta.bg.about.title} description={pageMeta.bg.about.description} lang={lang}>
-  <section class="profile-hero">
+<BaseLayout title={pageMeta.bg.about.title} description={pageMeta.bg.about.description} lang={lang} preloadImages={[bannerImage.src, teamImage.src]}>
+  <section class="profile-hero about-hero">
+    <FactoryImage image={bannerImage} loading="eager" sizes="100vw" class="page-banner-media" />
+    <div class="page-banner-shade" aria-hidden="true"></div>
     <div class="shell profile-hero-grid">
       <div class="space-y-6">
         <p class="eyebrow hero-entry">{content.heroLabel}</p>
@@ -24,12 +40,65 @@ const teamImage = {
     </div>
   </section>
 
-  <section class="profile-section">
-    <div class="shell profile-intro">
-      <div class="hero-entry hero-entry-delay-3">
-        <FactoryImage image={teamImage} sizes="(min-width: 1024px) 42vw, 100vw" class="profile-photo" />
+  <section class="profile-section about-walkthrough-section">
+    <div class="shell about-walkthrough">
+      <div class="about-walkthrough-copy">
+        <div class="about-walkthrough-text" data-page-reveal>
+          <p class="eyebrow">{content.walkthroughLabel}</p>
+          <h2 class="profile-section-title">{content.walkthroughTitle}</h2>
+          <p class="body-copy">{content.walkthroughIntro}</p>
+        </div>
+        <div class="about-team-frame photo-rise" data-page-reveal>
+          <FactoryImage image={teamImage} loading="eager" sizes="(min-width: 1024px) 32vw, 100vw" class="about-team-photo image-cut" />
+        </div>
       </div>
-      <div class="profile-copy hero-entry hero-entry-delay-3">
+
+      <div class="about-walkthrough-steps" aria-label={content.walkthroughLabel}>
+        {content.walkthroughSteps.map((step) => (
+          <article class="about-step" data-page-reveal tabindex="0">
+            <p class="about-step-label">{step.label}</p>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-section about-gallery-section">
+    <div class="shell">
+      <div class="about-gallery-heading-row">
+        <div class="about-gallery-heading" data-page-reveal>
+          <p class="eyebrow">{content.galleryLabel}</p>
+          <h2 class="profile-section-title">{content.galleryTitle}</h2>
+          {content.galleryIntro && <p class="body-copy">{content.galleryIntro}</p>}
+        </div>
+        <div class="about-gallery-controls" data-page-reveal>
+          <button type="button" class="about-gallery-button" data-gallery-prev aria-label={content.galleryPreviousLabel} title={content.galleryPreviousLabel}>←</button>
+          <button type="button" class="about-gallery-button" data-gallery-next aria-label={content.galleryNextLabel} title={content.galleryNextLabel}>→</button>
+        </div>
+      </div>
+
+      <div class="about-gallery-frame">
+        <div class="about-gallery-track" data-about-gallery aria-label={content.galleryTitle} tabindex="0">
+          {galleryItems.map((item, index) => (
+            <article class="about-gallery-item" data-page-reveal tabindex="0" style={`--reveal-index: ${index}`}>
+              <FactoryImage image={item.image} sizes="(min-width: 1024px) 32rem, 82vw" class="about-gallery-photo image-cut" />
+              <div class="about-gallery-caption">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{item.machineName}</h3>
+                <p>{item.caption}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-section profile-section-ruled client-assessment-section">
+    <div class="shell client-assessment">
+      <div class="profile-copy" data-page-reveal>
         <p class="eyebrow">{content.snapshots[0].label}</p>
         <h2 class="profile-section-title">{content.profileTitle}</h2>
         <div class="space-y-4">
@@ -38,30 +107,52 @@ const teamImage = {
           ))}
         </div>
       </div>
+
+      <div>
+        <div class="profile-section-heading" data-page-reveal>
+          <p class="eyebrow">{content.capabilitiesLabel}</p>
+          <h2 class="profile-section-title">{content.snapshots[1].title}</h2>
+        </div>
+        <div class="profile-capabilities">
+          {content.capabilities.map((item) => (
+            <article class="profile-capability" data-page-reveal tabindex="0">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="profile-section profile-section-ruled">
-    <div class="shell">
-      <div class="profile-section-heading">
-        <p class="eyebrow">{content.capabilitiesLabel}</p>
-        <h2 class="profile-section-title">{content.snapshots[1].title}</h2>
+  <section class="about-partner-standard">
+    <div class="shell about-partner-standard-inner">
+      <div class="about-partner-standard-copy" data-page-reveal>
+        <p class="eyebrow">{content.partnerStandardLabel}</p>
+        <h2 class="closing-title">{content.partnerStandardTitle}</h2>
+        <p class="body-copy">{content.partnerStandardIntro}</p>
       </div>
-      <div class="profile-capabilities">
-        {content.capabilities.map((item) => (
-          <article class="profile-capability">
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
+      <ul class="about-standard-list" aria-label={content.partnerStandardLabel}>
+        {content.partnerStandardItems.map((item) => (
+          <li data-page-reveal>{item}</li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
-  <section class="closing-section">
-    <div class="shell closing-cta">
-      <h2 class="closing-title">{content.closingTitle}</h2>
-      <a href="/bg/contact" class="button-primary">{content.closingAction}</a>
-    </div>
-  </section>
+  <script>
+    const gallery = document.querySelector("[data-about-gallery]");
+    const previousButton = document.querySelector("[data-gallery-prev]");
+    const nextButton = document.querySelector("[data-gallery-next]");
+
+    const scrollGallery = (direction: number) => {
+      if (!(gallery instanceof HTMLElement)) return;
+      const firstItem = gallery.querySelector(".about-gallery-item");
+      const distance = firstItem instanceof HTMLElement ? firstItem.offsetWidth + 24 : gallery.clientWidth * 0.8;
+      gallery.scrollBy({ left: direction * distance, behavior: "smooth" });
+    };
+
+    previousButton?.addEventListener("click", () => scrollGallery(-1));
+    nextButton?.addEventListener("click", () => scrollGallery(1));
+  </script>
 </BaseLayout>

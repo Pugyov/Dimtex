@@ -20,24 +20,10 @@ const alternatePath =
       : trimmedPath.replace(/^\/bg/, "") || "/";
 ---
 
-<button
-  type="button"
-  data-lang-target={alternatePath}
-  class="text-sm text-[rgba(17,17,17,0.56)] underline-offset-4 hover:text-[#111111] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+<a
+  href={alternatePath}
+  class="text-sm [color:var(--text-on-dark-subtle)] underline-offset-4 hover:[color:var(--text-on-dark)] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
   aria-label={lang === "en" ? "Switch language to Bulgarian" : "Смени езика на английски"}
 >
   <span>{copy.otherLocaleName}</span>
-</button>
-
-<script>
-  const switches = document.querySelectorAll("[data-lang-target]");
-
-  for (const entry of switches) {
-    entry.addEventListener("click", () => {
-      const target = entry.getAttribute("data-lang-target");
-      if (target) {
-        window.location.assign(target);
-      }
-    });
-  }
-</script>
+</a>

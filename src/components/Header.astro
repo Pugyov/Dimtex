@@ -1,6 +1,7 @@
 ---
 import { navigationItems } from "../data/navigation";
 import { siteCopy } from "../data/translations";
+import { company } from "../data/company";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import MobileMenu from "./react/MobileMenu";
 
@@ -11,6 +12,11 @@ interface Props {
 
 const { lang, pathname } = Astro.props;
 const copy = siteCopy[lang];
+const logoPath = "/images/DimtexLogos/DimtexLogo_Full.png";
+const headerHours =
+  lang === "en"
+    ? "Mon - Fri, 8 AM - 5 PM"
+    : "Пон - Пет, 8:00 - 17:00";
 
 const navItems = navigationItems.map((item) => ({
   key: item.key,
@@ -22,35 +28,39 @@ const navItems = navigationItems.map((item) => ({
 }));
 ---
 
-<header class="sticky top-0 z-40 border-b border-black/10 bg-[rgba(248,244,236,0.92)] backdrop-blur-xl">
-  <div class="shell flex min-h-[5.25rem] items-center justify-between gap-6 py-4">
-    <a href={lang === "en" ? "/" : "/bg"} class="min-w-0">
-      <span class="block font-display text-[1.75rem] font-semibold tracking-[0.02em] text-[#17120f] sm:text-[1.95rem]">{copy.brand}</span>
+<header class="sticky top-0 z-40 bg-[#2b2f28] [color:var(--text-on-dark)]">
+  <div class="hidden border-b border-white/10 lg:block">
+    <div class="shell flex min-h-12 items-center justify-between gap-8 text-sm [color:var(--text-on-dark-muted)]">
+      <p>{lang === "en" ? "Call us" : "Тел."} : {company.phonePlaceholder}</p>
+      <p>{lang === "en" ? "Open hours" : "Работно време"} : {headerHours}</p>
+    </div>
+  </div>
+
+  <div class="shell grid min-h-24 grid-cols-[auto_1fr_auto] items-center gap-6 py-3">
+    <a href={lang === "en" ? "/" : "/bg"} class="site-logo-link" aria-label={copy.brand}>
+      <img src={logoPath} alt={copy.brand} class="site-logo" width="1536" height="1024" />
     </a>
 
-    <nav class="hidden items-center gap-6 lg:flex" aria-label={lang === "en" ? "Primary navigation" : "Основна навигация"}>
-      {navItems.filter((item) => item.key !== "contact").map((item) => (
+    <nav class="hidden items-center justify-center gap-10 lg:flex" aria-label={lang === "en" ? "Primary navigation" : "Основна навигация"}>
+      {navItems.map((item) => (
         <a
           href={item.href}
           class:list={[
-            "text-sm text-[rgba(17,17,17,0.56)] hover:text-[#111111] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
-            item.active ? "text-[#17120f]" : ""
+            "text-[0.82rem] uppercase tracking-[0.16em] [color:var(--text-on-dark-subtle)] hover:[color:var(--text-on-dark)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+            item.active ? "text-[#c8843e]" : ""
           ]}
           aria-current={item.active ? "page" : undefined}
         >
           {item.label}
         </a>
       ))}
-      <a
-        href={lang === "en" ? "/contact" : "/bg/contact"}
-        class="rounded-full bg-[#7f1d1d] px-4 py-2 text-sm text-white transition hover:bg-[#641515] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-      >
-        {copy.actions.contact}
-      </a>
-      <LanguageSwitcher lang={lang} pathname={pathname} />
     </nav>
 
-    <div class="lg:hidden">
+    <div class="hidden items-center justify-end lg:flex">
+      <LanguageSwitcher lang={lang} pathname={pathname} />
+    </div>
+
+    <div class="col-start-3 lg:hidden">
       <MobileMenu client:load lang={lang} pathname={pathname} />
     </div>
   </div>

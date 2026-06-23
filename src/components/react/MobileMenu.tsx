@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { navigationItems } from "../../data/navigation";
 import { siteCopy } from "../../data/translations";
@@ -11,7 +11,12 @@ type Props = {
 export default function MobileMenu({ lang, pathname }: Props) {
   const [open, setOpen] = useState(false);
   const [rendered, setRendered] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuPanelRef = useRef<HTMLDivElement>(null);
+  const triggerButtonRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
   const copy = siteCopy[lang];
+  const logoPath = "/images/DimtexLogos/DimtexLogo_Full.png";
 
   const closeMenu = () => setOpen(false);
 
@@ -24,10 +29,43 @@ export default function MobileMenu({ lang, pathname }: Props) {
     if (open) {
       setRendered(true);
       document.body.style.overflow = "hidden";
+      previouslyFocusedElementRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+      window.requestAnimationFrame(() => {
+        closeButtonRef.current?.focus();
+      });
 
       const onKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Escape") {
+          event.preventDefault();
           closeMenu();
+          return;
+        }
+
+        if (event.key !== "Tab" || !menuPanelRef.current) {
+          return;
+        }
+
+        const focusableElements = Array.from(
+          menuPanelRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((element) => !element.hasAttribute("disabled") && element.tabIndex !== -1);
+
+        if (!focusableElements.length) {
+          event.preventDefault();
+          return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
         }
       };
 
@@ -46,6 +84,9 @@ export default function MobileMenu({ lang, pathname }: Props) {
 
     document.body.style.removeProperty("overflow");
     const timeoutId = window.setTimeout(() => setRendered(false), 240);
+    const elementToRestore = previouslyFocusedElementRef.current ?? triggerButtonRef.current;
+    elementToRestore?.focus();
+    previouslyFocusedElementRef.current = null;
 
     return () => {
       window.clearTimeout(timeoutId);
@@ -65,8 +106,9 @@ export default function MobileMenu({ lang, pathname }: Props) {
     <>
       <button
         type="button"
+        ref={triggerButtonRef}
         onClick={() => setOpen(true)}
-        className="inline-flex h-11 w-11 items-center justify-center text-[#17120f]"
+        className="inline-flex h-11 w-11 items-center justify-center [color:var(--text-on-dark)]"
         aria-expanded={open}
         aria-controls="mobile-menu-panel"
         aria-label={lang === "en" ? "Open menu" : "Отвори меню"}
@@ -81,14 +123,15 @@ export default function MobileMenu({ lang, pathname }: Props) {
 
       {rendered && (
         <div
-          className={`fixed inset-0 z-50 bg-black/20 backdrop-blur-sm ${
+          className={`fixed inset-0 z-50 bg-black/30 backdrop-blur-sm ${
             open ? "animate-[fade-in_220ms_ease-out]" : "animate-[fade-out_220ms_ease-in_forwards]"
           }`}
           onClick={closeMenu}
         >
           <div
             id="mobile-menu-panel"
-            className={`flex min-h-svh w-full flex-col bg-[#f8f4ec] px-6 pb-10 pt-6 text-[#17120f] ${
+            ref={menuPanelRef}
+            className={`flex min-h-svh w-full flex-col bg-[#232a22] px-6 pb-10 pt-6 [color:var(--text-on-dark)] ${
               open
                 ? "animate-[menu-rise_260ms_cubic-bezier(0.22,1,0.36,1)]"
                 : "animate-[menu-fall_220ms_cubic-bezier(0.55,0.085,0.68,0.53)_forwards]"
@@ -100,14 +143,13 @@ export default function MobileMenu({ lang, pathname }: Props) {
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-display text-[1.75rem] font-semibold tracking-[0.02em] text-[#17120f] animate-[hero-rise_360ms_cubic-bezier(0.22,1,0.36,1)] sm:text-[1.95rem]">
-                  {copy.brand}
-                </p>
+                <img src={logoPath} alt={copy.brand} className="mobile-menu-logo animate-[hero-rise_360ms_cubic-bezier(0.22,1,0.36,1)]" width="1536" height="1024" />
               </div>
               <button
                 type="button"
+                ref={closeButtonRef}
                 onClick={closeMenu}
-                className="inline-flex h-11 w-11 items-center justify-center text-[#17120f] animate-[hero-rise_360ms_cubic-bezier(0.22,1,0.36,1)]"
+                className="inline-flex h-11 w-11 items-center justify-center [color:var(--text-on-dark)] animate-[hero-rise_360ms_cubic-bezier(0.22,1,0.36,1)]"
                 aria-label={lang === "en" ? "Close menu" : "Затвори меню"}
               >
                 <span className="text-[1.75rem] leading-none">×</span>
@@ -115,7 +157,7 @@ export default function MobileMenu({ lang, pathname }: Props) {
             </div>
 
             <nav
-              className="mt-8 flex flex-1 flex-col border-t border-black/10 pt-8"
+              className="mt-8 flex flex-1 flex-col border-t border-white/12 pt-8"
               aria-label={lang === "en" ? "Mobile menu links" : "Мобилни връзки"}
             >
               {navigationItems.map((item) => {
@@ -128,8 +170,8 @@ export default function MobileMenu({ lang, pathname }: Props) {
                     key={item.key}
                     href={href}
                     onClick={closeMenu}
-                    className={`border-b border-black/10 py-4 text-[0.78rem] uppercase tracking-[0.22em] animate-[hero-rise_420ms_cubic-bezier(0.22,1,0.36,1)] ${
-                      active ? "text-[#17120f]" : "text-[rgba(23,18,15,0.58)]"
+                    className={`border-b border-white/12 py-4 text-[0.78rem] uppercase tracking-[0.22em] animate-[hero-rise_420ms_cubic-bezier(0.22,1,0.36,1)] ${
+                      active ? "text-[#c8843e]" : "[color:var(--text-on-dark-subtle)]"
                     }`}
                     style={{ animationDelay: `${80 + navigationItems.indexOf(item) * 40}ms`, animationFillMode: "both" }}
                     aria-current={active ? "page" : undefined}
@@ -140,11 +182,11 @@ export default function MobileMenu({ lang, pathname }: Props) {
               })}
             </nav>
 
-            <div className="space-y-3 border-t border-black/10 pt-6">
+            <div className="space-y-3 border-t border-white/12 pt-6">
               <a
                 href={alternatePath}
                 onClick={closeMenu}
-                className="inline-flex text-[0.78rem] uppercase tracking-[0.22em] text-[rgba(23,18,15,0.58)] underline-offset-4 hover:text-[#17120f] hover:underline animate-[hero-rise_420ms_cubic-bezier(0.22,1,0.36,1)]"
+                className="inline-flex text-[0.78rem] uppercase tracking-[0.22em] [color:var(--text-on-dark-subtle)] underline-offset-4 hover:[color:var(--text-on-dark)] hover:underline animate-[hero-rise_420ms_cubic-bezier(0.22,1,0.36,1)]"
                 style={{ animationDelay: "240ms", animationFillMode: "both" }}
               >
                 {copy.otherLocaleName}

@@ -23,6 +23,7 @@ Open the local Astro dev server URL shown in the terminal.
 ## Available Scripts
 
 - `npm run dev` starts the development server
+- `npm run check` runs Astro type and content validation
 - `npm run build` creates the production build in `dist/`
 - `npm run preview` previews the built site locally
 
@@ -30,9 +31,11 @@ Open the local Astro dev server URL shown in the terminal.
 
 ```text
 public/
-  favicon.svg
   robots.txt
-  images/placeholders/
+  images/DimtexLogos/
+  images/Partners/
+  images/factory/
+  images/machinery/
 src/
   components/
   components/react/
@@ -48,32 +51,29 @@ tsconfig.json
 
 ## How To Edit Content
 
-- Company placeholders and identifiers live in `src/data/company.ts`
+- Company details, image references, partner logos, and localized page content live in `src/data/company.ts`
 - Navigation routes live in `src/data/navigation.ts`
-- Services and capability copy live in `src/data/services.ts`
-- Gallery placeholder entries live in `src/data/gallery.ts`
 - Shared localized labels and metadata live in `src/data/translations.ts`
 
 Page templates are intentionally thin and pull from these data files.
 
 ## How To Replace Images
 
-- Replace SVG placeholders in `public/images/placeholders/` with real approved factory imagery
-- Keep the same filenames if you want existing references to continue working
-- If you add new files, update the matching entries in `src/data/gallery.ts` or direct page image references
+- Factory and machinery imagery lives under `public/images/factory/` and `public/images/machinery/`
+- Partner and brand assets live under `public/images/Partners/` and `public/images/DimtexLogos/`
+- Keep the same filenames if you want existing references in `src/data/company.ts` to continue working
+- If you add new files, update the matching image entries in `src/data/company.ts` or direct page references
 - Preserve clear, descriptive `alt` text for every image
 
 ## Forms
 
-- `contact` and `careers` use standard HTML forms with Netlify Forms attributes
-- Hidden `form-name` fields are included for both forms
-- Configure the Netlify `contact` form to send email notifications to `n.d.pugyov@gmail.com`
+- English and Bulgarian contact pages use standard HTML forms with Netlify Forms attributes
+- Hidden `form-name` and honeypot fields are included for the `contact` form
+- Configure the Netlify `contact` form notification recipient in Netlify
 - No backend or file upload flow is implemented in version one
 - Success routes are static confirmation pages:
   - `/contact-success`
-  - `/careers-success`
   - `/bg/contact-success`
-  - `/bg/careers-success`
 
 ## Deployment On Netlify
 
@@ -81,5 +81,6 @@ Page templates are intentionally thin and pull from these data files.
 2. Use the build command `npm run build`
 3. Use the publish directory `dist`
 4. Enable form handling in Netlify so the static forms are collected
-5. In Netlify, open Forms -> `contact` -> Notifications and add `n.d.pugyov@gmail.com`
-6. Replace placeholder company contact details and images before production launch
+5. In Netlify, open Forms -> `contact` -> Notifications and add the desired recipient
+6. Security headers are defined in `netlify.toml`
+7. Replace placeholder company contact details and images before production launch

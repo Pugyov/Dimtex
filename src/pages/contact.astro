@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactForm from "../components/ContactForm.astro";
 import FactoryImage from "../components/FactoryImage.astro";
-import { contactContent, factoryImages } from "../data/company";
+import { company, contactContent, factoryImages } from "../data/company";
 import { pageMeta } from "../data/translations";
 
 const lang = "en";
@@ -12,10 +12,17 @@ const contactImage = {
   fallbackSrc: factoryImages.sewingDetail.fallbackSrc,
   alt: factoryImages.sewingDetail.alt.en
 };
+const bannerImage = {
+  src: factoryImages.workshop.src,
+  fallbackSrc: factoryImages.workshop.fallbackSrc,
+  alt: factoryImages.workshop.alt.en
+};
 ---
 
 <BaseLayout title={pageMeta.en.contact.title} description={pageMeta.en.contact.description} lang={lang}>
   <section class="profile-hero">
+    <FactoryImage image={bannerImage} loading="eager" sizes="100vw" class="page-banner-media" />
+    <div class="page-banner-shade" aria-hidden="true"></div>
     <div class="shell profile-hero-grid">
       <div class="space-y-6">
         <p class="eyebrow hero-entry">{content.heroLabel}</p>
@@ -27,13 +34,29 @@ const contactImage = {
 
   <section class="profile-section">
     <div class="shell profile-intro contact-profile">
-      <aside class="contact-aside hero-entry hero-entry-delay-3">
-        <FactoryImage image={contactImage} sizes="(min-width: 1024px) 42vw, 100vw" class="profile-photo contact-photo" />
-        <p class="image-caption">{content.imageCaption}</p>
+      <aside class="contact-aside">
+        <div class="contact-photo-frame photo-rise" data-page-reveal>
+          <FactoryImage image={contactImage} loading="eager" sizes="(min-width: 1024px) 42vw, 100vw" class="profile-photo contact-photo image-cut" />
+        </div>
+        <p class="image-caption" data-page-reveal style="--reveal-index: 1">{content.imageCaption}</p>
+        <div class="contact-facts" data-page-reveal style="--reveal-index: 2">
+          <div class="contact-fact">
+            <dt>Address</dt>
+            <dd>{company.addressEn}</dd>
+          </div>
+          <div class="contact-fact">
+            <dt>Phone</dt>
+            <dd>{company.phonePlaceholder}</dd>
+          </div>
+          <div class="contact-fact">
+            <dt>Email</dt>
+            <dd>{company.emailPlaceholder}</dd>
+          </div>
+        </div>
       </aside>
 
-      <div class="profile-copy contact-form-wrap hero-entry hero-entry-delay-3">
-        <div class="profile-section-heading contact-form-heading">
+      <div class="profile-copy contact-form-wrap">
+        <div class="profile-section-heading contact-form-heading" data-page-reveal>
           <p class="eyebrow">{content.heroLabel}</p>
           <h2 class="profile-section-title">{content.formTitle}</h2>
           <p class="body-copy">{content.formIntro}</p>

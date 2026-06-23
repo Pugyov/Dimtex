@@ -1,5 +1,6 @@
 ---
 import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 interface FactoryImageData {
   src: string;
@@ -16,8 +17,10 @@ interface Props {
 
 const { image, class: className = "", loading = "lazy", sizes } = Astro.props;
 const publicPath = image.src.startsWith("/") ? image.src.slice(1) : image.src;
-const realImageExists = existsSync(new URL(`../../public/${publicPath}`, import.meta.url));
+const realImageExists = existsSync(join(process.cwd(), "public", publicPath));
 const resolvedSrc = realImageExists ? image.src : image.fallbackSrc;
+const decoding = loading === "eager" ? "sync" : "async";
+const fetchPriority = loading === "eager" ? "high" : "auto";
 ---
 
 <img
@@ -25,8 +28,7 @@ const resolvedSrc = realImageExists ? image.src : image.fallbackSrc;
   alt={image.alt}
   class:list={["factory-photo", className]}
   loading={loading}
-  decoding="async"
+  decoding={decoding}
+  fetchpriority={fetchPriority}
   sizes={sizes}
-  data-fallback-src={image.fallbackSrc}
-  onerror="this.onerror=null; if (this.dataset.fallbackSrc) this.src=this.dataset.fallbackSrc;"
 />

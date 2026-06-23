@@ -14,6 +14,6 @@
   <circle cx="280" cy="640" r="66" fill="#9f1239"/>
   <circle cx="760" cy="640" r="66" fill="#9f1239"/>
   <circle cx="1140" cy="640" r="66" fill="#9f1239"/>
-  <text x="120" y="160" fill="#ffffff" font-family="Arial, sans-serif" font-size="74" font-weight="700">Production Floor Placeholder</text>
+  <text x="120" y="160" fill="#ffffff" font-family="Arial, sans-serif" font-size="74">Production Floor Placeholder</text>
   <text x="120" y="910" fill="#12355b" font-family="Arial, sans-serif" font-size="38">Replace with real factory photography when approved.</text>
 </svg>

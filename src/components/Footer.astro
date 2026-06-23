@@ -10,27 +10,28 @@ interface Props {
 const { lang } = Astro.props;
 const copy = siteCopy[lang];
 const companyName = lang === "en" ? company.nameEn : company.nameBg;
+const logoPath = "/images/DimtexLogos/DimtexLogo_Full.png";
 ---
 
-<footer class="border-t border-black/10 bg-[#17120f] text-[#f8f4ec]">
+<footer class="border-t border-white/10 bg-[#2b2f28] [color:var(--text-on-dark)]">
   <div class="shell grid gap-12 py-14 lg:grid-cols-[1.4fr_0.7fr_1fr] lg:items-end">
     <div class="max-w-xl space-y-4">
-      <p class="font-display text-3xl font-semibold">{companyName}</p>
-      <p class="text-sm leading-6 text-white/62">{copy.footer.strapline}</p>
+      <img src={logoPath} alt={companyName} class="footer-logo" width="1536" height="1024" />
+      <p class="text-sm leading-6 [color:var(--text-on-dark-subtle)]">{copy.footer.strapline}</p>
     </div>
 
     <div class="space-y-3">
       <h3 class="eyebrow eyebrow-on-dark">{lang === "en" ? "Pages" : "Страници"}</h3>
-      <ul class="space-y-2 text-sm text-white/62">
+      <ul class="space-y-2 text-sm [color:var(--text-on-dark-subtle)]">
         {navigationItems.filter((item) => item.key !== "contact").map((item) => (
           <li>
-            <a class="hover:text-white" href={lang === "en" ? item.path : item.bgPath}>
+            <a class="hover:[color:var(--text-on-dark)]" href={lang === "en" ? item.path : item.bgPath}>
               {copy.nav[item.key]}
             </a>
           </li>
         ))}
         <li>
-          <a class="hover:text-white" href={lang === "en" ? "/contact" : "/bg/contact"}>
+          <a class="hover:[color:var(--text-on-dark)]" href={lang === "en" ? "/contact" : "/bg/contact"}>
             {copy.actions.contact}
           </a>
         </li>
@@ -39,7 +40,7 @@ const companyName = lang === "en" ? company.nameEn : company.nameBg;
 
     <div class="space-y-3">
       <h3 class="eyebrow eyebrow-on-dark">{lang === "en" ? "Company" : "Компания"}</h3>
-      <ul class="space-y-2 text-sm text-white/62">
+      <ul class="space-y-2 text-sm [color:var(--text-on-dark-subtle)]">
         <li>{company.addressPlaceholder}</li>
         <li>{company.phonePlaceholder}</li>
         <li>{company.emailPlaceholder}</li>

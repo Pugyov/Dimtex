@@ -4,5 +4,5 @@
   <rect x="550" y="360" width="320" height="320" rx="24" fill="#1f2937"/>
   <rect x="930" y="220" width="320" height="460" rx="24" fill="#9f1239"/>
   <rect x="1290" y="420" width="140" height="260" rx="18" fill="#cbd5e1"/>
-  <text x="120" y="160" fill="#111827" font-family="Arial, sans-serif" font-size="74" font-weight="700">Packaging Placeholder</text>
+  <text x="120" y="160" fill="#111827" font-family="Arial, sans-serif" font-size="74">Packaging Placeholder</text>
 </svg>
